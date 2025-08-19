@@ -1,5 +1,5 @@
 import React from "react";
-import { CasinoCard } from "./cards/CasinoCard1";
+import { CasinoCard } from "./cards/CasinoCard";
 import { THEME } from "../constants/theme";
 import { LayoutGrid, GridItem } from "./layout/LayoutGrid";
 
@@ -18,12 +18,12 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Dealer"
-              solid={THEME.color.solid.cardA}
-              imageSrc="/assets/images/dealer1.png"
-              fontSize="3rem"
-              imgWidth="80px"
-              imgHeight="160px"
-              imgPosition="bottom-right"
+              gradient={THEME.color.gradient.cardA}
+              imageSrc="/assets/images/dealer.png"
+              fontSize="2.4rem"
+              imgWidth="150px"
+              imgHeight="165px"
+              imgPosition="top-right"
               fluid
             />
           </button>
@@ -32,12 +32,12 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Watchman"
-              solid={THEME.color.solid.cardB}
-              imageSrc="/assets/images/watchman1.png"
-              fontSize="2.6rem"
-              imgWidth="80px"
-              imgHeight="120px"
-              imgPosition="bottom-right"
+              gradient={THEME.color.gradient.cardB}
+              imageSrc="/assets/images/watchman.png"
+              fontSize="2.4rem"
+              imgWidth="140px"
+              imgHeight="200px"
+              imgPosition="top-right"
               fluid
             />
           </button>
@@ -48,12 +48,12 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Supervisor"
-              solid={THEME.color.solid.cardC}
-              imageSrc="/assets/images/casino-manager.png"
-              fontSize="3rem"
-              imgWidth="80px"
-              imgHeight="160px"
-              imgPosition="bottom-right"
+              gradient={THEME.color.gradient.cardC}
+              imageSrc="/assets/images/supervisor.png"
+              fontSize="2.2rem"
+              imgWidth="160px"
+              imgHeight="180px"
+              imgPosition="top-right"
               fluid
             />
           </button>
@@ -62,11 +62,11 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Refill"
-              solid={THEME.color.solid.cardE}
-              imageSrc="/assets/images/poker-chips1.png"
-              fontSize="2.5rem"
-              imgWidth="70px"
-              imgHeight="90px"
+              gradient={THEME.color.gradient.cardE}
+              imageSrc="/assets/images/refill.png"
+              fontSize="2.2rem"
+              imgWidth="120px"
+              imgHeight="140px"
               imgPosition="bottom-right"
               fluid
             />
@@ -78,11 +78,11 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Chip Filling"
-              solid={THEME.color.solid.cardG}
-              imageSrc="/assets/images/poker-chips.png"
-              fontSize="2rem"
-              imgWidth="60px"
-              imgHeight="90px"
+              gradient={THEME.color.gradient.cardB}
+              imageSrc="/assets/images/chip-filling.png"
+              fontSize="2.2rem"
+              imgWidth="70px"
+              imgHeight="100px"
               imgPosition="bottom-right"
               fluid
             />
@@ -92,11 +92,11 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Chip Count"
-              solid={THEME.color.solid.cardI}
-              imageSrc="/assets/images/casino-chip.png"
-              fontSize="2rem"
-              imgWidth="50px"
-              imgHeight="90px"
+              gradient={THEME.color.gradient.cardA}
+              imageSrc="/assets/images/chipcount.png"
+              fontSize="2.2rem"
+              imgWidth="70px"
+              imgHeight="100px"
               imgPosition="bottom-right"
               fluid
             />
@@ -106,11 +106,11 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Transfer"
-              solid={THEME.color.solid.cardD}
-              imageSrc="/assets/images/casino-chip1.png"
-              fontSize="2.5rem"
-              imgWidth="70px"
-              imgHeight="100px"
+              gradient={THEME.color.gradient.cardD}
+              imageSrc="/assets/images/transfer.png"
+              fontSize="2.2rem"
+              imgWidth="110px"
+              imgHeight="85px"
               imgPosition="bottom-right"
               fluid
             />
@@ -132,12 +132,12 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Member"
-              solid={THEME.color.solid.cardH}
-              imageSrc="/assets/images/member1.png"
+              gradient={THEME.color.gradient.cardA}
+              imageSrc="/assets/images/member.png"
               fontSize="1.2rem"
-              imgWidth="50px"
-              imgHeight="130px"
-              imgPosition="bottom-right"
+              imgWidth="80px"
+              imgHeight="80px"
+              imgPosition="right-center"
               fluid
               cardHeight="60px"
             />
@@ -148,11 +148,11 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Non - Member"
-              solid={THEME.color.solid.cardE}
-              imageSrc="/assets/images/member1.png"
+              gradient={THEME.color.gradient.cardE}
+              imageSrc="/assets/images/non-member.png"
               fontSize="1rem"
-              imgWidth="50px"
-              imgHeight="110px"
+              imgWidth="75px"
+              imgHeight="100px"
               imgPosition="bottom-right"
               fluid
               cardHeight="60px"
@@ -164,11 +164,11 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Setting"
-              solid={THEME.color.solid.cardJ}
-              imageSrc="/assets/images/settings1.png"
+              gradient={THEME.color.gradient.cardD}
+              imageSrc="/assets/images/setting.png"
               fontSize="1.2rem"
-              imgWidth="40px"
-              imgHeight="140px"
+              imgWidth="55px"
+              imgHeight="135px"
               imgPosition="bottom-right"
               fluid
               cardHeight="60px"
@@ -180,11 +180,11 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Table Close"
-              solid={THEME.color.solid.cardF}
-              imageSrc="/assets/images/close2.png"
+              gradient={THEME.color.gradient.glass}
+              imageSrc="/assets/images/close1.png"
               fontSize="1.2rem"
-              imgWidth="40px"
-              imgHeight="140px"
+              imgWidth="55px"
+              imgHeight="135px"
               imgPosition="bottom-right"
               fluid
               cardHeight="60px"
@@ -196,11 +196,11 @@ export const TableGrid: React.FC = () => (
           <button style={{ width: "100%" }}>
             <CasinoCard
               title="Minimize"
-              solid={THEME.color.solid.cardC}
-              imageSrc="/assets/images/minus.png"
+              gradient={THEME.color.gradient.glass}
+              imageSrc="/assets/images/minimize.png"
               fontSize="1.2rem"
-              imgWidth="40px"
-              imgHeight="140px"
+              imgWidth="35px"
+              imgHeight="135px"
               imgPosition="bottom-right"
               fluid
               cardHeight="60px"
