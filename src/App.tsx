@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Toolbar } from "./components/layout/Toolbar";
+import { TableGrid } from "./components/TableGrid1";
+// import { Header } from "./components/layout/Header";
+// import { Footer } from "./components/layout/Footer";
+import { THEME } from "./constants/theme";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div
+      className="w-full min-h-screen grid place-items-center"
+      style={{
+        background: `radial-gradient(1200px 600px at 20% -10%, rgba(139,92,246,0.18), transparent 50%), radial-gradient(800px 400px at 80% 110%, rgba(217,70,239,0.15), transparent 60%)`,
+        color: THEME.color.text.primary,
+      }}
+    >
+      <div
+        className="overflow-hidden flex flex-col"
+        style={{
+          width: THEME.size.frame.w,
+          height: THEME.size.frame.h,
+          maxWidth: "100%",
+          background: THEME.color.bg.surface,
+          borderRadius: THEME.size.radius.xl,
+          border: `1px solid ${THEME.color.stroke}`,
+          boxShadow: THEME.color.shadow,
+          fontFamily: THEME.font.family.display,
+        }}
+      >
+        <div style={{ flexShrink: 0 }}>
+          <Toolbar />
+        </div>
 
-export default App
+        {/* <div
+          className="w-full px-4 flex"
+          style={{
+            justifyContent: "end",
+            flexShrink: 0,
+            height: "80px",
+            alignItems: "center",
+          }}
+        >
+          <Header />
+        </div> */}
+
+        <div
+          className="px-4 overflow-hidden"
+          style={{
+            minHeight: 0,
+            marginTop: "15px",
+          }}
+        >
+          <TableGrid />
+        </div>
+
+        {/* <div
+          className="w-full px-4 flex"
+          style={{
+            justifyContent: "end",
+            flexShrink: 0,
+            height: "80px",
+            alignItems: "center",
+          }}
+        >
+          <Footer />
+        </div> */}
+      </div>
+    </div>
+  );
+}
