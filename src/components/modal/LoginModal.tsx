@@ -34,7 +34,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       "Z X C V B N M",
       "{shift} {bksp}",
     ],
-    numeric: ["1 2 3", "4 5 6", "7 8 9", "0 {bksp}"],
+    numeric: ["1 2 3", "4 5 6", "7 8 9", "0"],
   };
 
   const handleInputChange = (value: string) => {
@@ -54,10 +54,26 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     <>
       <style>
         {`
-          .hg-button-black {
+        .hg-button-black {
             color: black !important;
-          }import { Card } from './../ui/Card';
-
+        }
+        .customKeyboard {
+            height: 100%;
+            }
+        .customKeyboard .hg-rows {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .defaultKeyboard {
+            height: 60px !important;     
+            line-height: 60px !important;
+            font-size: 1.2rem !important;
+        }
+        .numericKeyboard {
+            font-size: 1.2rem !important;
+        }
         `}
       </style>
 
@@ -80,7 +96,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             background: THEME.color.solid.cardL,
             padding: "20px",
             borderRadius: "8px",
-            width: "600px",
+            width: "800px",
             boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
             display: "flex",
             flexDirection: "column",
@@ -104,47 +120,41 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             }}
           />
 
-          <div
-            style={{
-              display: "flex",
-              gap: "10px",
-            }}
-          >
-            <button
-              onClick={() => setLayout("default")}
-              style={{
-                fontSize: "1rem",
-                fontWeight: THEME.font.weight.bold,
-                color: "#0F0E0E",
-              }}
-            >
-              Default
-            </button>
-            <button
-              onClick={() => setLayout("numeric")}
-              style={{
-                fontSize: "1rem",
-                fontWeight: THEME.font.weight.bold,
-                color: "#0F0E0E",
-              }}
-            >
-              Numeric
-            </button>
-          </div>
+          <div style={{ display: "flex" }}>
+            {/* Default keyboard */}
+            <div style={{ flex: 3, height: "265px" }}>
+              <Keyboard
+                layout={layouts}
+                layoutName={layout}
+                onChange={handleInputChange}
+                onKeyPress={handleKeyPress}
+                buttonTheme={[
+                  {
+                    class: "hg-button-black defaultKeyboard",
+                    buttons:
+                      "1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Q W E R T Y U I O P A S D F G H J K L Z X C V B N M ! @ # $ % ^ & * ( ) {bksp} {shift}",
+                  },
+                ]}
+                theme="hg-theme-default customKeyboard"
+              />
+            </div>
 
-          <Keyboard
-            layout={layouts}
-            layoutName={layout}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
-            buttonTheme={[
-              {
-                class: "hg-button-black",
-                buttons:
-                  "1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Q W E R T Y U I O P A S D F G H J K L Z X C V B N M ! @ # $ % ^ & * ( ) {bksp} {shift}",
-              },
-            ]}
-          />
+            {/* Numeric keyboard */}
+            <div style={{ flex: 1 }}>
+              <Keyboard
+                layout={layouts}
+                layoutName="numeric"
+                onChange={handleInputChange}
+                onKeyPress={handleKeyPress}
+                buttonTheme={[
+                  {
+                    class: "hg-button-black numericKeyboard",
+                    buttons: "1 2 3 4 5 6 7 8 9 0",
+                  },
+                ]}
+              />
+            </div>
+          </div>
 
           <div
             style={{
