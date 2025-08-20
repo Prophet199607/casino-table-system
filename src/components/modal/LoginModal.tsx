@@ -25,29 +25,38 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       "q w e r t y u i o p",
       "a s d f g h j k l",
       "z x c v b n m",
-      "{shift} {bksp}",
+      "{shift} {bksp} clear",
     ],
     shift: [
       "! @ # $ % ^ & * ( )",
       "Q W E R T Y U I O P",
       "A S D F G H J K L",
       "Z X C V B N M",
-      "{shift} {bksp}",
+      "{shift} {bksp} clear",
     ],
     numeric: ["1 2 3", "4 5 6", "7 8 9", "0"],
-  };
-
-  const handleInputChange = (value: string) => {
-    setInput(value);
   };
 
   const handleKeyPress = (button: string) => {
     if (button === "{shift}") {
       setLayout((prev) => (prev === "default" ? "shift" : "default"));
-    }
-    if (button === "{bksp}") {
+    } else if (button === "{bksp}") {
       setInput((prev) => prev.slice(0, -1));
+    } else if (button === "clear") {
+      setInput("");
+    } else {
+      setInput((prev) => prev + button);
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    const lastChar = newValue.length > input.length ? newValue.slice(-1) : "";
+    setInput((prev) =>
+      newValue.length > prev.length
+        ? prev + lastChar
+        : prev.slice(0, newValue.length)
+    );
   };
 
   return (
@@ -57,17 +66,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
         .hg-button-black {
             color: black !important;
         }
-        .customKeyboard {
-            height: 100%;
-            }
-        .customKeyboard .hg-rows {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
         .defaultKeyboard {
-            height: 60px !important;     
+            height: 47px !important;     
             line-height: 60px !important;
             font-size: 1.2rem !important;
         }
@@ -106,9 +106,9 @@ export const LoginModal: React.FC<LoginModalProps> = ({
           <h2 style={{ margin: 0, color: "#0F0E0E" }}>{title} Login</h2>
 
           <input
-            type="password"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            value={"♠".repeat(input.length)}
+            onChange={handleChange}
             placeholder="Enter password"
             style={{
               width: "100%",
@@ -117,6 +117,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               border: "1px solid #ccc",
               borderRadius: "4px",
               color: "#0F0E0E",
+              fontFamily: "monospace",
             }}
           />
 
@@ -126,13 +127,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               <Keyboard
                 layout={layouts}
                 layoutName={layout}
-                onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
                 buttonTheme={[
                   {
                     class: "hg-button-black defaultKeyboard",
                     buttons:
-                      "1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Q W E R T Y U I O P A S D F G H J K L Z X C V B N M ! @ # $ % ^ & * ( ) {bksp} {shift}",
+                      "1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Q W E R T Y U I O P A S D F G H J K L Z X C V B N M ! @ # $ % ^ & * ( ) {bksp} {shift} clear",
                   },
                 ]}
                 theme="hg-theme-default customKeyboard"
@@ -144,7 +144,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               <Keyboard
                 layout={layouts}
                 layoutName="numeric"
-                onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
                 buttonTheme={[
                   {
