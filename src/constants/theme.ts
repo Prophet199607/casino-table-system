@@ -60,6 +60,7 @@ export const THEME = {
       cardI: "#ec4899", // pink
       cardJ: "#6b7280", // gray
       cardK: "#84cc16", // lime
+      cardL: "#FFFFFF", // White
       glass: "rgba(255,255,255,0.06)",
     },
     stroke: "rgba(255,255,255,0.08)",

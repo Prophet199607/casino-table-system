@@ -35,7 +35,10 @@ export const Toolbar = () => {
       className="flex items-center justify-between px-4 py-3"
       style={{ borderBottom: `1px solid ${THEME.color.stroke}` }}
     >
-      <div className="flex items-center gap-3">
+      <div
+        className="flex items-center px-4 py-3 gap-4"
+        style={{ borderBottom: `1px solid ${THEME.color.stroke}` }}
+      >
         <span
           className="font-semibold"
           style={{ fontSize: THEME.font.size.sm }}
@@ -43,6 +46,7 @@ export const Toolbar = () => {
           Date:
         </span>
         <span style={{ fontSize: THEME.font.size.xs }}>{formattedDate}</span>
+
         <span
           className="font-semibold"
           style={{ fontSize: THEME.font.size.sm }}
@@ -51,7 +55,8 @@ export const Toolbar = () => {
         </span>
         <span style={{ fontSize: THEME.font.size.xs }}>{time}</span>
       </div>
-      <div className="flex justify-end px-2">
+
+      <div className="flex justify-end px-3">
         <button className="h-11 w-11 relative rounded-xl overflow-visible shadow-lg flex items-center focus:outline-none">
           <img
             src="assets/images/notification.png"

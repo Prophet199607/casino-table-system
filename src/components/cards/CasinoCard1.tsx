@@ -11,13 +11,7 @@ interface CasinoCardProps {
   imgHeight?: string;
   cardHeight?: string;
   cardWidth?: string;
-  imgPosition?:
-    | "top-right"
-    | "top-left"
-    | "bottom-right"
-    | "bottom-left"
-    | "right-center"
-    | "center";
+  imgPosition?: string;
   fluid?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -32,7 +26,7 @@ export const CasinoCard: React.FC<CasinoCardProps> = ({
   imgHeight = "100px",
   cardHeight = "170px",
   cardWidth = "330px",
-  imgPosition = "center",
+  imgPosition = "top-right",
   fluid = true,
   className,
   style,
@@ -49,29 +43,8 @@ export const CasinoCard: React.FC<CasinoCardProps> = ({
     };
 
     switch (imgPosition) {
-      case "bottom-left":
-        return { ...base, bottom: "0.5rem", left: "0.5rem" };
-      case "bottom-right":
-        return { ...base, bottom: "-1rem", right: "0.5rem" };
       case "top-right":
-        return { ...base, top: "1rem", right: "-0.5rem" };
-      case "top-left":
-        return { ...base, top: "0.5rem", left: "0.5rem" };
-      case "right-center":
-        return {
-          ...base,
-          top: "50%",
-          right: "1rem",
-          transform: "translateY(-50%)",
-        };
-      case "center":
-      default:
-        return {
-          ...base,
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        };
+        return { ...base, top: "1rem", right: "0.5rem" };
     }
   };
 
@@ -97,18 +70,27 @@ export const CasinoCard: React.FC<CasinoCardProps> = ({
         style={{
           background: solid,
           color: THEME.color.text.primary,
-          borderRadius: THEME.size.radius.xl,
+          borderRadius: THEME.size.radius.md,
           border: `1px solid ${THEME.color.stroke}`,
           boxShadow: THEME.color.shadow,
           ...dims,
         }}
       >
-        <CardContent className="p-2 h-full flex justify-start relative">
+        <CardContent
+          className="flex"
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            height: "100%",
+            position: "relative",
+            padding: "1rem",
+          }}
+        >
           <h3
             className="font-semibold"
             style={{
               fontSize,
-              zIndex: 10,
+              margin: 0,
             }}
           >
             {title}
