@@ -1,7 +1,5 @@
 import { Toolbar } from "./components/layout/Toolbar";
 import { TableGrid } from "./components/TableGrid1";
-// import { Header } from "./components/layout/Header";
-// import { Footer } from "./components/layout/Footer";
 import { THEME } from "./constants/theme";
 
 export default function App() {
@@ -30,18 +28,6 @@ export default function App() {
           <Toolbar />
         </div>
 
-        {/* <div
-          className="w-full px-4 flex"
-          style={{
-            justifyContent: "end",
-            flexShrink: 0,
-            height: "80px",
-            alignItems: "center",
-          }}
-        >
-          <Header />
-        </div> */}
-
         <div
           className="px-4 overflow-hidden"
           style={{
@@ -51,18 +37,6 @@ export default function App() {
         >
           <TableGrid />
         </div>
-
-        {/* <div
-          className="w-full px-4 flex"
-          style={{
-            justifyContent: "end",
-            flexShrink: 0,
-            height: "80px",
-            alignItems: "center",
-          }}
-        >
-          <Footer />
-        </div> */}
       </div>
     </div>
   );
