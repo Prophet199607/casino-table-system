@@ -45,7 +45,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     setInput(e.target.value);
   };
 
-  const HARDCODED_PASSWORD = "ABC123";
+  const HARDCODED_PASSWORD = "1";
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (input === HARDCODED_PASSWORD) {
