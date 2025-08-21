@@ -41,19 +41,19 @@ export const Toolbar = () => {
       >
         <span
           className="font-semibold"
-          style={{ fontSize: THEME.font.size.sm }}
+          style={{ fontSize: THEME.font.size.base }}
         >
           Date:
         </span>
-        <span style={{ fontSize: THEME.font.size.xs }}>{formattedDate}</span>
+        <span style={{ fontSize: THEME.font.size.sm }}>{formattedDate}</span>
 
         <span
           className="font-semibold"
-          style={{ fontSize: THEME.font.size.sm }}
+          style={{ fontSize: THEME.font.size.base }}
         >
           Time:
         </span>
-        <span style={{ fontSize: THEME.font.size.xs }}>{time}</span>
+        <span style={{ fontSize: THEME.font.size.sm }}>{time}</span>
       </div>
 
       <div className="flex justify-end px-3">

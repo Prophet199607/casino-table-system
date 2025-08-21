@@ -5,42 +5,34 @@ import { THEME } from "../../constants/theme";
 
 interface LoginModalProps {
   title: string;
+  imageSrc?: string;
+  solid?: string;
   onClose: () => void;
   onLogin: (value: string) => void;
 }
 
 export const LoginModal: React.FC<LoginModalProps> = ({
   title,
+  imageSrc,
+  solid,
   onClose,
   onLogin,
 }) => {
   const [input, setInput] = useState("");
-  const [layout, setLayout] = useState<"default" | "numeric" | "shift">(
-    "default"
-  );
+  const [layout] = useState<"default" | "numeric">("default");
 
   const layouts = {
     default: [
-      "1 2 3 4 5 6 7 8 9 0",
-      "q w e r t y u i o p",
-      "a s d f g h j k l",
-      "z x c v b n m",
-      "{shift} {bksp} clear",
-    ],
-    shift: [
-      "! @ # $ % ^ & * ( )",
       "Q W E R T Y U I O P",
       "A S D F G H J K L",
       "Z X C V B N M",
-      "{shift} {bksp} clear",
+      "{bksp} clear",
     ],
     numeric: ["1 2 3", "4 5 6", "7 8 9", "0"],
   };
 
   const handleKeyPress = (button: string) => {
-    if (button === "{shift}") {
-      setLayout((prev) => (prev === "default" ? "shift" : "default"));
-    } else if (button === "{bksp}") {
+    if (button === "{bksp}") {
       setInput((prev) => prev.slice(0, -1));
     } else if (button === "clear") {
       setInput("");
@@ -67,7 +59,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             color: black !important;
         }
         .defaultKeyboard {
-            height: 47px !important;     
+            height: 60px !important;     
             line-height: 60px !important;
             font-size: 1.2rem !important;
         }
@@ -103,23 +95,56 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             gap: "1rem",
           }}
         >
-          <h2 style={{ margin: 0, color: "#0F0E0E" }}>{title} Login</h2>
-
-          <input
-            type="text"
-            value={"♠".repeat(input.length)}
-            onChange={handleChange}
-            placeholder="Enter password"
+          <div
             style={{
-              width: "100%",
-              padding: "10px",
-              fontSize: "1rem",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              color: "#0F0E0E",
-              fontFamily: "monospace",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
-          />
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              {imageSrc && (
+                <div
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    borderRadius: "50%",
+                    backgroundColor: solid,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src={imageSrc}
+                    alt={title}
+                    style={{
+                      width: "80%",
+                      height: "80%",
+                      borderRadius: "50%",
+                      filter: "invert(1)",
+                    }}
+                  />
+                </div>
+              )}
+              <h2 style={{ margin: 0, color: "#0F0E0E" }}>{title} Login</h2>
+            </div>
+
+            <input
+              type="text"
+              value={"♠".repeat(input.length)}
+              onChange={handleChange}
+              placeholder="Enter password"
+              style={{
+                padding: "10px",
+                fontSize: "1rem",
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+                color: "#0F0E0E",
+                fontFamily: "monospace",
+              }}
+            />
+          </div>
 
           <div style={{ display: "flex" }}>
             {/* Default keyboard */}
@@ -163,45 +188,37 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             }}
           >
             <button
-              onClick={() => onLogin(input)}
-              style={{
-                flex: 1,
-                marginRight: "0.5rem",
-                padding: "10px",
-                backgroundColor: THEME.color.solid.cardD,
-                color: "#fff",
-                border: "none",
-                borderRadius: "4px",
-              }}
-            >
-              Login
-            </button>
-            <button
-              onClick={() => setInput("")}
-              style={{
-                flex: 1,
-                marginRight: "0.5rem",
-                padding: "10px",
-                backgroundColor: THEME.color.solid.cardC,
-                color: "#000",
-                border: "none",
-                borderRadius: "4px",
-              }}
-            >
-              Clear
-            </button>
-            <button
               onClick={onClose}
               style={{
                 flex: 1,
+                marginRight: "0.5rem",
                 padding: "10px",
                 backgroundColor: THEME.color.solid.cardF,
                 color: "#fff",
                 border: "none",
                 borderRadius: "4px",
+                height: "60px",
+                fontSize: "1.2rem",
+                fontWeight: "bold",
               }}
             >
               Exit
+            </button>
+            <button
+              onClick={() => onLogin(input)}
+              style={{
+                flex: 1,
+                padding: "10px",
+                backgroundColor: THEME.color.solid.cardD,
+                color: "#fff",
+                border: "none",
+                borderRadius: "4px",
+                height: "60px",
+                fontSize: "1.2rem",
+                fontWeight: "bold",
+              }}
+            >
+              Login
             </button>
           </div>
         </div>

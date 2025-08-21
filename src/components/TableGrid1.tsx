@@ -7,9 +7,13 @@ import { LoginModal } from "./modal/LoginModal";
 export const TableGrid: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTitle, setActiveTitle] = useState("");
+  const [activeImageSrc, setActiveImageSrc] = useState("");
+  const [activeBackground, setActiveBackground] = useState("");
 
-  const handleOpenModal = (title: string) => {
+  const handleOpenModal = (title: string, imageSrc: string, solid?: string) => {
     setActiveTitle(title);
+    setActiveImageSrc(imageSrc);
+    setActiveBackground(solid || "");
     setIsModalOpen(true);
   };
 
@@ -37,7 +41,13 @@ export const TableGrid: React.FC = () => {
             <GridItem wPx={330}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Dealer")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Dealer",
+                    "/assets/images/dealer1.png",
+                    THEME.color.solid.cardA
+                  )
+                }
               >
                 <CasinoCard
                   title="Dealer"
@@ -54,7 +64,13 @@ export const TableGrid: React.FC = () => {
             <GridItem wPx={330}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Watchman")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Watchman",
+                    "/assets/images/watchman1.png",
+                    THEME.color.solid.cardB
+                  )
+                }
               >
                 <CasinoCard
                   title="Watchman"
@@ -71,7 +87,13 @@ export const TableGrid: React.FC = () => {
             <GridItem wPx={400}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Supervisor")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Supervisor",
+                    "/assets/images/casino-manager.png",
+                    THEME.color.solid.cardC
+                  )
+                }
               >
                 <CasinoCard
                   title="Supervisor"
@@ -88,7 +110,13 @@ export const TableGrid: React.FC = () => {
             <GridItem wPx={250}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Refill")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Refill",
+                    "/assets/images/poker-chips1.png",
+                    THEME.color.solid.cardE
+                  )
+                }
               >
                 <CasinoCard
                   title="Refill"
@@ -105,7 +133,13 @@ export const TableGrid: React.FC = () => {
             <GridItem wPx={200}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Chip Filling")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Chip Filling",
+                    "/assets/images/poker-chips.png",
+                    THEME.color.solid.cardG
+                  )
+                }
               >
                 <CasinoCard
                   title="Chip Filling"
@@ -122,7 +156,13 @@ export const TableGrid: React.FC = () => {
             <GridItem wPx={200}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Chip Count")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Chip Count",
+                    "/assets/images/casino-chip.png",
+                    THEME.color.solid.cardI
+                  )
+                }
               >
                 <CasinoCard
                   title="Chip Count"
@@ -139,7 +179,13 @@ export const TableGrid: React.FC = () => {
             <GridItem wPx={250}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Transfer")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Transfer",
+                    "/assets/images/casino-chip1.png",
+                    THEME.color.solid.cardD
+                  )
+                }
               >
                 <CasinoCard
                   title="Transfer"
@@ -167,7 +213,13 @@ export const TableGrid: React.FC = () => {
             <GridItem hPx={35}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Member")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Member",
+                    "/assets/images/member1.png",
+                    THEME.color.solid.cardH
+                  )
+                }
               >
                 <CasinoCard
                   title="Member"
@@ -185,7 +237,13 @@ export const TableGrid: React.FC = () => {
             <GridItem hPx={35}>
               <button
                 style={{ width: "100%" }}
-                onClick={() => handleOpenModal("Setting")}
+                onClick={() =>
+                  handleOpenModal(
+                    "Setting",
+                    "/assets/images/settings1.png",
+                    THEME.color.solid.cardJ
+                  )
+                }
               >
                 <CasinoCard
                   title="Setting"
@@ -285,6 +343,8 @@ export const TableGrid: React.FC = () => {
         {isModalOpen && (
           <LoginModal
             title={activeTitle}
+            imageSrc={activeImageSrc}
+            solid={activeBackground}
             onClose={handleCloseModal}
             onLogin={handleLogin}
           />

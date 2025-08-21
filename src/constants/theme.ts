@@ -51,7 +51,7 @@ export const THEME = {
     solid: {
       cardA: "#52b1ff", // blue
       cardB: "#8B5CF6", // purple
-      cardC: "#f5be27", // yellow
+      cardC: "#f7ba11", // yellow
       cardD: "#029c70", // green
       cardE: "#2655ed", // deep blue
       cardF: "#e63946", // red
