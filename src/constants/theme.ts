@@ -1,7 +1,13 @@
 export const THEME = {
   size: {
     frame: { w: 1000, h: 700 },
-    radius: { sm: "0.5rem", md: "1rem", xl: "1.5rem", pill: "999px" },
+    radius: {
+      sm: "0.5rem",
+      md: "1rem",
+      lg: "1.25rem",
+      xl: "1.5rem",
+      pill: "999px",
+    },
   },
   space: { xs: 6, sm: 8, md: 12, lg: 16, xl: 24 },
   font: {
