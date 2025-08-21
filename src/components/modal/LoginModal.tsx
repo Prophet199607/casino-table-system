@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import { THEME } from "../../constants/theme";
+import { RefillModal } from "./RefillModal";
 
 interface LoginModalProps {
   title: string;
   imageSrc?: string;
   solid?: string;
   onClose: () => void;
-  onLogin: (value: string) => void;
 }
 
 export const LoginModal: React.FC<LoginModalProps> = ({
@@ -16,10 +16,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   imageSrc,
   solid,
   onClose,
-  onLogin,
 }) => {
   const [input, setInput] = useState("");
   const [layout] = useState<"default" | "numeric">("default");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const layouts = {
     default: [
@@ -42,13 +42,17 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    const lastChar = newValue.length > input.length ? newValue.slice(-1) : "";
-    setInput((prev) =>
-      newValue.length > prev.length
-        ? prev + lastChar
-        : prev.slice(0, newValue.length)
-    );
+    setInput(e.target.value);
+  };
+
+  const HARDCODED_PASSWORD = "ABC123";
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (input === HARDCODED_PASSWORD) {
+      setShowSuccessModal(true);
+    } else {
+      alert("Invalid password");
+    }
   };
 
   return (
@@ -83,145 +87,160 @@ export const LoginModal: React.FC<LoginModalProps> = ({
           zIndex: 1000,
         }}
       >
-        <div
-          style={{
-            background: THEME.color.solid.cardL,
-            padding: "20px",
-            borderRadius: "8px",
-            width: "800px",
-            boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              {imageSrc && (
+        {!showSuccessModal && (
+          <form onSubmit={handleLogin}>
+            <div
+              style={{
+                background: THEME.color.solid.cardL,
+                padding: "20px",
+                borderRadius: "8px",
+                width: "800px",
+                boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
                 <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "50%",
-                    backgroundColor: solid,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  style={{ display: "flex", alignItems: "center", gap: "12px" }}
                 >
-                  <img
-                    src={imageSrc}
-                    alt={title}
-                    style={{
-                      width: "80%",
-                      height: "80%",
-                      borderRadius: "50%",
-                      filter: "invert(1)",
-                    }}
+                  {imageSrc && (
+                    <div
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        borderRadius: "50%",
+                        backgroundColor: solid,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <img
+                        src={imageSrc}
+                        alt={title}
+                        style={{
+                          width: "80%",
+                          height: "80%",
+                          borderRadius: "50%",
+                          filter: "invert(1)",
+                        }}
+                      />
+                    </div>
+                  )}
+                  <h2 style={{ margin: 0, color: "#0F0E0E" }}>{title} Login</h2>
+                </div>
+
+                <input
+                  type="text"
+                  value={"♠".repeat(input.length)}
+                  onChange={handleChange}
+                  placeholder="Enter password"
+                  style={{
+                    padding: "10px",
+                    fontSize: "1rem",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    color: "#0F0E0E",
+                    fontFamily: "monospace",
+                  }}
+                />
+              </div>
+
+              <div style={{ display: "flex" }}>
+                {/* Default keyboard */}
+                <div style={{ flex: 3, height: "265px" }}>
+                  <Keyboard
+                    layout={layouts}
+                    layoutName={layout}
+                    onKeyPress={handleKeyPress}
+                    buttonTheme={[
+                      {
+                        class: "hg-button-black defaultKeyboard",
+                        buttons:
+                          "1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Q W E R T Y U I O P A S D F G H J K L Z X C V B N M ! @ # $ % ^ & * ( ) {bksp} {shift} clear",
+                      },
+                    ]}
+                    theme="hg-theme-default customKeyboard"
                   />
                 </div>
-              )}
-              <h2 style={{ margin: 0, color: "#0F0E0E" }}>{title} Login</h2>
+
+                {/* Numeric keyboard */}
+                <div style={{ flex: 1 }}>
+                  <Keyboard
+                    layout={layouts}
+                    layoutName="numeric"
+                    onKeyPress={handleKeyPress}
+                    buttonTheme={[
+                      {
+                        class: "hg-button-black numericKeyboard",
+                        buttons: "1 2 3 4 5 6 7 8 9 0",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: "1rem",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={onClose}
+                  style={{
+                    flex: 1,
+                    marginRight: "0.5rem",
+                    padding: "10px",
+                    backgroundColor: THEME.color.solid.cardF,
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "4px",
+                    height: "60px",
+                    fontSize: "1.2rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Exit
+                </button>
+                <button
+                  type="submit"
+                  style={{
+                    flex: 1,
+                    padding: "10px",
+                    backgroundColor: THEME.color.solid.cardD,
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "4px",
+                    height: "60px",
+                    fontSize: "1.2rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Login
+                </button>
+              </div>
             </div>
+          </form>
+        )}
 
-            <input
-              type="text"
-              value={"♠".repeat(input.length)}
-              onChange={handleChange}
-              placeholder="Enter password"
-              style={{
-                padding: "10px",
-                fontSize: "1rem",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-                color: "#0F0E0E",
-                fontFamily: "monospace",
-              }}
-            />
-          </div>
-
-          <div style={{ display: "flex" }}>
-            {/* Default keyboard */}
-            <div style={{ flex: 3, height: "265px" }}>
-              <Keyboard
-                layout={layouts}
-                layoutName={layout}
-                onKeyPress={handleKeyPress}
-                buttonTheme={[
-                  {
-                    class: "hg-button-black defaultKeyboard",
-                    buttons:
-                      "1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Q W E R T Y U I O P A S D F G H J K L Z X C V B N M ! @ # $ % ^ & * ( ) {bksp} {shift} clear",
-                  },
-                ]}
-                theme="hg-theme-default customKeyboard"
-              />
-            </div>
-
-            {/* Numeric keyboard */}
-            <div style={{ flex: 1 }}>
-              <Keyboard
-                layout={layouts}
-                layoutName="numeric"
-                onKeyPress={handleKeyPress}
-                buttonTheme={[
-                  {
-                    class: "hg-button-black numericKeyboard",
-                    buttons: "1 2 3 4 5 6 7 8 9 0",
-                  },
-                ]}
-              />
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: "1rem",
-            }}
-          >
-            <button
-              onClick={onClose}
-              style={{
-                flex: 1,
-                marginRight: "0.5rem",
-                padding: "10px",
-                backgroundColor: THEME.color.solid.cardF,
-                color: "#fff",
-                border: "none",
-                borderRadius: "4px",
-                height: "60px",
-                fontSize: "1.2rem",
-                fontWeight: "bold",
-              }}
-            >
-              Exit
-            </button>
-            <button
-              onClick={() => onLogin(input)}
-              style={{
-                flex: 1,
-                padding: "10px",
-                backgroundColor: THEME.color.solid.cardD,
-                color: "#fff",
-                border: "none",
-                borderRadius: "4px",
-                height: "60px",
-                fontSize: "1.2rem",
-                fontWeight: "bold",
-              }}
-            >
-              Login
-            </button>
-          </div>
-        </div>
+        {/* Success modal */}
+        {showSuccessModal && (
+          <RefillModal
+            isOpen={true}
+            onButtonClick={() => setShowSuccessModal(false)}
+          />
+        )}
       </div>
     </>
   );

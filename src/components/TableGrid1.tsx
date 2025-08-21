@@ -5,7 +5,7 @@ import { LayoutGrid, GridItem } from "./layout/LayoutGrid";
 import { LoginModal } from "./modal/LoginModal";
 
 export const TableGrid: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [activeTitle, setActiveTitle] = useState("");
   const [activeImageSrc, setActiveImageSrc] = useState("");
   const [activeBackground, setActiveBackground] = useState("");
@@ -14,17 +14,12 @@ export const TableGrid: React.FC = () => {
     setActiveTitle(title);
     setActiveImageSrc(imageSrc);
     setActiveBackground(solid || "");
-    setIsModalOpen(true);
+    setIsLoginModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsLoginModalOpen(false);
     setActiveTitle("");
-  };
-
-  const handleLogin = (value: string) => {
-    alert(`Login with: ${value}`);
-    handleCloseModal();
   };
 
   return (
@@ -205,7 +200,7 @@ export const TableGrid: React.FC = () => {
         <div style={{ flex: 1, minWidth: 0 }}>
           <LayoutGrid
             cols={1}
-            rowHeight={28}
+            rowHeight={25}
             gap={30}
             dense
             style={{ height: "100%" }}
@@ -331,6 +326,7 @@ export const TableGrid: React.FC = () => {
                     marginTop: "12px",
                     textAlign: "left",
                     fontWeight: "bold",
+                    fontSize: "1.2rem",
                   }}
                 >
                   Table No
@@ -340,13 +336,12 @@ export const TableGrid: React.FC = () => {
           </LayoutGrid>
         </div>
 
-        {isModalOpen && (
+        {isLoginModalOpen && (
           <LoginModal
             title={activeTitle}
             imageSrc={activeImageSrc}
             solid={activeBackground}
             onClose={handleCloseModal}
-            onLogin={handleLogin}
           />
         )}
       </div>
