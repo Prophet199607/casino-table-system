@@ -21,12 +21,12 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
     "5 M",
     "2.5 M",
     "1 M",
-    "500,000",
-    "100,000",
-    "50,000",
-    "10,000",
-    "5,000",
-    "1,000",
+    "500 K",
+    "100 K",
+    "50 K",
+    "10 K",
+    "5 K",
+    "1 K",
     "500",
     "100",
     "50",
@@ -36,12 +36,12 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
     "5 M": 5000000,
     "2.5 M": 2500000,
     "1 M": 1000000,
-    "500,000": 500000,
-    "100,000": 100000,
-    "50,000": 50000,
-    "10,000": 10000,
-    "5,000": 5000,
-    "1,000": 1000,
+    "500 K": 500000,
+    "100 K": 100000,
+    "50 K": 50000,
+    "10 K": 10000,
+    "5 K": 5000,
+    "1 K": 1000,
     "500": 500,
     "100": 100,
     "50": 50,
@@ -97,7 +97,6 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
   };
 
   const handleExit = () => {
-    // Show the App component
     window.location.href = "/";
   };
 
@@ -140,18 +139,6 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
           padding={THEME.space.lg}
           onClick={(e) => e.stopPropagation()}
         >
-          <h2
-            style={{
-              color: "black",
-              textAlign: "end",
-              fontSize: "2rem",
-              marginTop: "0",
-              marginBottom: "0",
-            }}
-          >
-            REFILL
-          </h2>
-
           <div
             style={{
               display: "flex",
@@ -207,6 +194,7 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                     style={{
                       flex: 1,
                       maxWidth: "200px",
+                      height: "40px",
                       padding: THEME.space.sm,
                       borderRadius: THEME.size.radius.sm,
                       border: "1px solid #ccc",
@@ -259,7 +247,8 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: THEME.space.sm,
+                gap: THEME.space.md,
+                marginTop: "4rem",
               }}
             >
               <Button
@@ -289,6 +278,18 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                 gap: THEME.space.md,
               }}
             >
+              <h2
+                style={{
+                  color: "black",
+                  textAlign: "end",
+                  fontSize: "2rem",
+                  marginTop: "0",
+                  marginBottom: "0",
+                }}
+              >
+                REFILL
+              </h2>
+
               {/* Keyboard */}
               <Keyboard
                 layout={layouts}
@@ -303,40 +304,43 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
               />
 
               {/* Select option */}
-              <label
-                style={{
-                  fontSize: THEME.font.size.base,
-                  fontWeight: THEME.font.weight.bold,
-                  color: "black",
-                  textAlign: "left",
-                  alignSelf: "flex-start",
-                }}
-              >
-                Approved
-              </label>
-              <select
-                defaultValue="Mr Hashitha"
-                style={{
-                  width: "100%",
-                  padding: THEME.space.sm,
-                  borderRadius: THEME.size.radius.sm,
-                  border: "1px solid #ccc",
-                  fontSize: THEME.font.size.lg,
-                  backgroundColor: "#fff",
-                  color: "black",
-                }}
-              >
-                <option value="Mr Hashitha">Mr Hashitha</option>
-                <option value="Mr Thamalpath">Mr Thamalpath</option>
-                <option value="Mr Pasindu">Mr Pasindu</option>
-              </select>
+              <div style={{ marginTop: "1rem" }}>
+                <label
+                  style={{
+                    fontSize: THEME.font.size.base,
+                    fontWeight: THEME.font.weight.bold,
+                    color: "black",
+                    textAlign: "left",
+                    alignSelf: "flex-start",
+                  }}
+                >
+                  Approved
+                </label>
+                <select
+                  defaultValue="Mr Hashitha"
+                  style={{
+                    width: "100%",
+                    padding: THEME.space.sm,
+                    borderRadius: THEME.size.radius.sm,
+                    border: "1px solid #ccc",
+                    fontSize: THEME.font.size.lg,
+                    backgroundColor: "#fff",
+                    color: "black",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  <option value="Mr Hashitha">Mr Hashitha</option>
+                  <option value="Mr Thamalpath">Mr Thamalpath</option>
+                  <option value="Mr Pasindu">Mr Pasindu</option>
+                </select>
+              </div>
 
               {/* Exit button */}
               <Button
                 onClick={handleExit}
                 style={{
                   alignSelf: "flex-end",
-                  marginTop: "60px",
+                  marginTop: "100px",
                   width: "100px",
                 }}
               >

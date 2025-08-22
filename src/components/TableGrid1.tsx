@@ -3,15 +3,31 @@ import { CasinoCard } from "./cards/CasinoCard1";
 import { THEME } from "../constants/theme";
 import { LayoutGrid, GridItem } from "./layout/LayoutGrid";
 import { LoginModal } from "./modal/LoginModal";
+import { RefillModal } from "./modal/RefillModal";
 
 export const TableGrid: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [activeTitle, setActiveTitle] = useState("");
   const [activeImageSrc, setActiveImageSrc] = useState("");
   const [activeBackground, setActiveBackground] = useState("");
+  const [showModalAfterLogin, setShowModalAfterLogin] = useState<string | null>(
+    null
+  );
+  const [pendingAction, setPendingAction] = useState<string | null>(null);
 
   const handleOpenModal = (title: string, imageSrc: string, solid?: string) => {
-    setActiveTitle(title);
+    const supervisorGroup = [
+      "Supervisor",
+      "Refill",
+      "Chip Filling",
+      "Chip Count",
+      "Transfer",
+    ];
+
+    const modalTitle = supervisorGroup.includes(title) ? "Supervisor" : title;
+
+    setPendingAction(title);
+    setActiveTitle(modalTitle);
     setActiveImageSrc(imageSrc);
     setActiveBackground(solid || "");
     setIsLoginModalOpen(true);
@@ -20,6 +36,12 @@ export const TableGrid: React.FC = () => {
   const handleCloseModal = () => {
     setIsLoginModalOpen(false);
     setActiveTitle("");
+  };
+
+  const handleLoginSuccess = () => {
+    setShowModalAfterLogin(pendingAction);
+    setPendingAction(null);
+    setIsLoginModalOpen(false);
   };
 
   return (
@@ -269,7 +291,7 @@ export const TableGrid: React.FC = () => {
               </button>
             </GridItem>
 
-            <GridItem hPx={100}>
+            <GridItem hPx={150}>
               <div
                 style={{
                   marginTop: "20px",
@@ -278,7 +300,7 @@ export const TableGrid: React.FC = () => {
                   padding: "12px",
                   color: THEME.color.text.primary,
                   background: THEME.color.solid.glass,
-                  fontSize: "0.9rem",
+                  fontSize: "1.3rem",
                 }}
               >
                 <div
@@ -321,27 +343,27 @@ export const TableGrid: React.FC = () => {
                   <span>Count</span>
                   <span>XXXX</span>
                 </div>
-                <div
-                  style={{
-                    marginTop: "12px",
-                    textAlign: "left",
-                    fontWeight: "bold",
-                    fontSize: "1.2rem",
-                  }}
-                >
-                  Table No
-                </div>
               </div>
             </GridItem>
           </LayoutGrid>
         </div>
 
+        {/* Login modal */}
         {isLoginModalOpen && (
           <LoginModal
             title={activeTitle}
             imageSrc={activeImageSrc}
             solid={activeBackground}
             onClose={handleCloseModal}
+            onSuccess={handleLoginSuccess} // 👈 NEW
+          />
+        )}
+
+        {/* Conditional rendering of modals after login */}
+        {showModalAfterLogin === "Refill" && (
+          <RefillModal
+            isOpen={true}
+            onButtonClick={() => setShowModalAfterLogin(null)}
           />
         )}
       </div>

@@ -9,6 +9,7 @@ interface LoginModalProps {
   imageSrc?: string;
   solid?: string;
   onClose: () => void;
+  onSuccess: () => void;
 }
 
 export const LoginModal: React.FC<LoginModalProps> = ({
@@ -16,6 +17,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   imageSrc,
   solid,
   onClose,
+  onSuccess,
 }) => {
   const [input, setInput] = useState("");
   const [layout] = useState<"default" | "numeric">("default");
@@ -49,9 +51,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (input === HARDCODED_PASSWORD) {
-      setShowSuccessModal(true);
-    } else {
-      alert("Invalid password");
+      onSuccess();
     }
   };
 
@@ -191,23 +191,23 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
+                  justifyContent: "flex-end",
                   marginTop: "1rem",
+                  gap: "0.5rem",
                 }}
               >
                 <button
                   type="button"
                   onClick={onClose}
                   style={{
-                    flex: 1,
-                    marginRight: "0.5rem",
-                    padding: "10px",
+                    padding: "10px 20px",
                     backgroundColor: THEME.color.solid.cardF,
                     color: "#fff",
                     border: "none",
                     borderRadius: "4px",
-                    height: "60px",
-                    fontSize: "1.2rem",
+                    height: "50px",
+                    width: "100px",
+                    fontSize: "1rem",
                     fontWeight: "bold",
                   }}
                 >
@@ -216,14 +216,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                 <button
                   type="submit"
                   style={{
-                    flex: 1,
-                    padding: "10px",
+                    padding: "10px 20px",
                     backgroundColor: THEME.color.solid.cardD,
                     color: "#fff",
                     border: "none",
                     borderRadius: "4px",
-                    height: "60px",
-                    fontSize: "1.2rem",
+                    height: "50px",
+                    width: "100px",
+                    fontSize: "1rem",
                     fontWeight: "bold",
                   }}
                 >
