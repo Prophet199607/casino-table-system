@@ -12,8 +12,8 @@ export const THEME = {
   space: { xs: 6, sm: 8, md: 12, lg: 16, xl: 24 },
   font: {
     family: {
-      display: "'Inter', sans-serif",
-      mono: "'Inter', 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas",
+      display: "'Inter', Orbitron, sans-serif",
+      mono: "'Inter', 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
     },
     size: {
       xs: "0.75rem",
