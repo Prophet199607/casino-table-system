@@ -53,7 +53,24 @@ export const Toolbar = () => {
         >
           Time:
         </span>
-        <span style={{ fontSize: THEME.font.size.sm }}>{time}</span>
+        <span
+          style={{
+            fontSize: THEME.font.size.xl,
+            fontWeight: "bold",
+            fontFamily: "monospace",
+          }}
+        >
+          {time}
+        </span>
+      </div>
+
+      <div
+        style={{
+          fontWeight: "bold",
+          fontSize: "1.2rem",
+        }}
+      >
+        Table No:
       </div>
 
       <div className="flex justify-end px-3">
