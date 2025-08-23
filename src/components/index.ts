@@ -11,5 +11,7 @@ export { Card, CardContent } from "./ui/Card";
 export { Button } from "./ui/Button";
 
 // Modal Components
+export { Modal } from "./modal/Modal";
 export { LoginModal } from "./modal/LoginModal";
 export { RefillModal } from "./modal/RefillModal";
+export { TransferModal } from "./modal/TransferModal";

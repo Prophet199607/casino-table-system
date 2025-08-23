@@ -4,6 +4,7 @@ import { THEME } from "../constants/theme";
 import { LayoutGrid, GridItem } from "./layout/LayoutGrid";
 import { LoginModal } from "./modal/LoginModal";
 import { RefillModal } from "./modal/RefillModal";
+import { TransferModal } from "./modal/TransferModal";
 
 export const TableGrid: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -362,6 +363,13 @@ export const TableGrid: React.FC = () => {
         {/* Conditional rendering of modals after login */}
         {showModalAfterLogin === "Refill" && (
           <RefillModal
+            isOpen={true}
+            onButtonClick={() => setShowModalAfterLogin(null)}
+          />
+        )}
+
+        {showModalAfterLogin === "Transfer" && (
+          <TransferModal
             isOpen={true}
             onButtonClick={() => setShowModalAfterLogin(null)}
           />
