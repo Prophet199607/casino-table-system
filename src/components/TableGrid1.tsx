@@ -153,19 +153,19 @@ export const TableGrid: React.FC = () => {
                 style={{ width: "100%" }}
                 onClick={() =>
                   handleOpenModal(
-                    "Chip Filling",
+                    "Filling",
                     "/assets/images/poker-chips.png",
                     THEME.color.solid.cardG
                   )
                 }
               >
                 <CasinoCard
-                  title="Chip Filling"
+                  title="Filling"
                   solid={THEME.color.solid.cardG}
                   imageSrc="/assets/images/poker-chips.png"
                   fontSize="2.1rem"
-                  imgWidth="60px"
-                  imgHeight="90px"
+                  imgWidth="70px"
+                  imgHeight="70px"
                   imgPosition="top-right"
                   fluid
                 />
@@ -176,19 +176,19 @@ export const TableGrid: React.FC = () => {
                 style={{ width: "100%" }}
                 onClick={() =>
                   handleOpenModal(
-                    "Chip Count",
+                    "Count",
                     "/assets/images/casino-chip.png",
                     THEME.color.solid.cardI
                   )
                 }
               >
                 <CasinoCard
-                  title="Chip Count"
+                  title="Count"
                   solid={THEME.color.solid.cardI}
                   imageSrc="/assets/images/casino-chip.png"
                   fontSize="2.1rem"
-                  imgWidth="50px"
-                  imgHeight="90px"
+                  imgWidth="60px"
+                  imgHeight="60px"
                   imgPosition="top-right"
                   fluid
                 />
@@ -296,28 +296,28 @@ export const TableGrid: React.FC = () => {
               <div
                 style={{
                   marginTop: "20px",
-                  border: "2px solid white",
-                  borderRadius: "8px",
-                  padding: "12px",
+                  padding: "6px",
                   color: THEME.color.text.primary,
-                  background: THEME.color.solid.glass,
-                  fontSize: "1.3rem",
+                  fontSize: "1.2rem",
                 }}
               >
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
+                    gap: "50px",
                     marginBottom: "6px",
                   }}
                 >
                   <span>Dealer</span>
                   <span>XXXX</span>
                 </div>
+
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
+                    gap: "16px",
                     marginBottom: "6px",
                   }}
                 >
@@ -327,7 +327,8 @@ export const TableGrid: React.FC = () => {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
+                    gap: "15px",
                     marginBottom: "6px",
                   }}
                 >
@@ -337,7 +338,8 @@ export const TableGrid: React.FC = () => {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
+                    gap: "54px",
                     marginBottom: "6px",
                   }}
                 >

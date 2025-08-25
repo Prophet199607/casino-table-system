@@ -2,7 +2,7 @@ import React from "react";
 import type { ButtonHTMLAttributes } from "react";
 import { THEME } from "../../constants/theme";
 
-type ButtonVariant = "primary" | "secondary";
+type ButtonVariant = "primary" | "secondary" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -38,6 +38,11 @@ export const Button: React.FC<ButtonProps> = ({
     },
     secondary: {
       background: THEME.color.brand.fuchsia,
+      color: THEME.color.text.primary,
+      border: "none",
+    },
+    danger: {
+      background: THEME.color.brand.danger,
       color: THEME.color.text.primary,
       border: "none",
     },
