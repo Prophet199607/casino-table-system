@@ -5,6 +5,7 @@ import { LayoutGrid, GridItem } from "./layout/LayoutGrid";
 import { LoginModal } from "./modal/LoginModal";
 import { RefillModal } from "./modal/RefillModal";
 import { TransferModal } from "./modal/TransferModal";
+import { MenuModal } from "./modal/MenuModal";
 
 export const TableGrid: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -14,6 +15,9 @@ export const TableGrid: React.FC = () => {
   const [showModalAfterLogin, setShowModalAfterLogin] = useState<string | null>(
     null
   );
+  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+
+
   const [pendingAction, setPendingAction] = useState<string | null>(null);
 
   const handleOpenModal = (title: string, imageSrc: string, solid?: string) => {
@@ -234,7 +238,6 @@ export const TableGrid: React.FC = () => {
                 onClick={() =>
                   handleOpenModal(
                     "Member",
-                    "/assets/images/member1.png",
                     THEME.color.solid.cardH
                   )
                 }
@@ -255,18 +258,13 @@ export const TableGrid: React.FC = () => {
             <GridItem hPx={35}>
               <button
                 style={{ width: "100%" }}
-                onClick={() =>
-                  handleOpenModal(
-                    "Setting",
-                    "/assets/images/settings1.png",
-                    THEME.color.solid.cardJ
-                  )
-                }
+                onClick={() => setIsMenuModalOpen(true)}
+                
               >
                 <CasinoCard
-                  title="Setting"
+                  title="Menu"
                   solid={THEME.color.solid.cardJ}
-                  imageSrc="/assets/images/settings1.png"
+                  imageSrc="/assets/images/menu.png"
                   fontSize="1.5rem"
                   imgWidth="45px"
                   imgHeight="45px"
@@ -373,6 +371,10 @@ export const TableGrid: React.FC = () => {
             isOpen={true}
             onButtonClick={() => setShowModalAfterLogin(null)}
           />
+        )}
+
+        {isMenuModalOpen && (
+          <MenuModal onClose={() => setIsMenuModalOpen(false)} />
         )}
       </div>
     </>

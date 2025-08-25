@@ -15,3 +15,4 @@ export { Modal } from "./modal/Modal";
 export { LoginModal } from "./modal/LoginModal";
 export { RefillModal } from "./modal/RefillModal";
 export { TransferModal } from "./modal/TransferModal";
+export {MenuModal} from "./modal/MenuModal";
