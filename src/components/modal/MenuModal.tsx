@@ -39,10 +39,8 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
         height: 60,
         borderRadius: 8,
         background: "#4a5fc9",
-        color: "white",
-        fontSize: "0.95rem",
+        fontSize: "1.3rem",
         fontWeight: 600,
-        border: "none",
         cursor: "pointer",
         transition: "transform .2s ease, background .2s ease",
         boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
@@ -66,7 +64,6 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
       style={{
         position: "fixed",
         inset: 0,
-        backgroundColor: "rgba(0,0,0,0.7)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -87,18 +84,10 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
             flexDirection: "column",
             overflow: "hidden",
             borderRadius: 12,
-            background: "linear-gradient(135deg, #4a5fc9 0%, #2e3f8f 100%)",
+            background: "linear-gradient(135deg, #4a5fc9 0%",
           }}
         >
           <div style={{ flex: 1, overflowY: "auto", padding: 20 }}>
-            <div
-              style={{
-                background: "rgba(255, 255, 255, 0.1)",
-                borderRadius: 10,
-                padding: 15,
-                marginBottom: 15,
-              }}
-            >
               <select
                 value={selectedTable}
                 onChange={(e) => setSelectedTable(e.target.value)}
@@ -106,16 +95,20 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
                   width: "100%",
                   height: 45,
                   borderRadius: 6,
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  background: "rgba(0,0,0,0.2)",
+                  background: "rgba(9, 54, 153, 0.2)",
                   fontWeight: 600,
                   padding: "0 12px",
                   fontSize: "0.95rem",
                   marginBottom: 15,
                 }}
               >
-                <option value="" disabled style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>
-                  Select table...
+                <option value="" disabled 
+                  style={{ 
+                    backgroundColor: "#4a5fc9",
+                    fontSize: "1rem"
+                   }}
+                  >
+                  Select Table
                 </option>
                 <option style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>Casino Table 01</option>
                 <option style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>Casino Table 02</option>
@@ -148,13 +141,12 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
                 <NormalButton label="F & B" />
                 <NormalButton label="Chip Detect" />
               </div>
-            </div>
           </div>
 
           <div
             style={{
               padding: "12px 20px",
-              background: "rgba(0,0,0,0.2)",
+              background: "rgba(24, 21, 214, 0.2)",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
@@ -166,11 +158,10 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
                 background: "linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%)",
                 border: "none",
                 borderRadius: 6,
-                color: "white",
                 padding: "10px 20px",
                 fontWeight: 600,
                 cursor: "pointer",
-                fontSize: "0.95rem",
+                fontSize: "1.3rem",
                 minWidth: 120,
                 boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
                 transition: "transform .2s ease, opacity .2s ease",
@@ -187,11 +178,10 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
                 background: "rgba(255,255,255,0.15)",
                 border: "1px solid rgba(255,255,255,0.35)",
                 borderRadius: 6,
-                color: "white",
                 padding: "10px 20px",
                 fontWeight: 600,
                 cursor: "pointer",
-                fontSize: "0.95rem",
+                fontSize: "1.3rem",
                 minWidth: 120,
                 backdropFilter: "blur(3px)",
                 transition: "transform .2s ease, opacity .2s ease",
