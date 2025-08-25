@@ -28,7 +28,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       "Q W E R T Y U I O P",
       "A S D F G H J K L",
       "Z X C V B N M",
-      "{bksp} clear",
+      "{bksp} {space} clear",
     ],
     numeric: ["1 2 3", "4 5 6", "7 8 9", "0"],
   };
@@ -38,6 +38,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       setInput((prev) => prev.slice(0, -1));
     } else if (button === "clear") {
       setInput("");
+    } else if (button === "{space}") {
+      setInput((prev) => prev + " ");
     } else {
       setInput((prev) => prev + button);
     }
@@ -165,10 +167,15 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                       {
                         class: "hg-button-black defaultKeyboard",
                         buttons:
-                          "1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Q W E R T Y U I O P A S D F G H J K L Z X C V B N M ! @ # $ % ^ & * ( ) {bksp} {shift} clear",
+                          "1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Q W E R T Y U I O P A S D F G H J K L Z X C V B N M ! @ # $ % ^ & * ( ) {bksp} {space} clear",
                       },
                     ]}
                     theme="hg-theme-default customKeyboard"
+                    display={{
+                      "{bksp}": "Backspace",
+                      "{space}": "Space",
+                      clear: "Clear",
+                    }}
                   />
                 </div>
 

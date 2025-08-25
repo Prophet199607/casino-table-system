@@ -113,7 +113,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
             font-size: 1.2rem !important;
         }
         .numericKeyboard {
-            font-size: 1.2rem !important;
+            font-size: 1.5rem !important;
         }
         `}
       </style>
@@ -152,7 +152,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "0.5rem",
+                gap: "0.3rem",
                 flex: 1,
               }}
             >
@@ -194,14 +194,14 @@ export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
                     style={{
                       flex: 1,
                       maxWidth: "200px",
-                      height: "40px",
+                      height: "45px",
                       padding: THEME.space.sm,
                       borderRadius: THEME.size.radius.sm,
                       border: "1px solid #ccc",
                       color: "black",
                       backgroundColor:
                         selectedIndex === index ? "#d5c0fa" : "white",
-                      fontSize: "1rem",
+                      fontSize: "1.5rem",
                       fontWeight: THEME.font.weight.semibold,
                     }}
                   />
@@ -213,7 +213,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  fontSize: THEME.font.size.lg,
+                  fontSize: THEME.font.size.display,
                   fontWeight: THEME.font.weight.bold,
                   gap: THEME.space.md,
                   marginTop: THEME.space.md,
@@ -227,11 +227,6 @@ export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
                 <div
                   style={{
                     flex: 1,
-                    maxWidth: "200px",
-                    padding: THEME.space.sm,
-                    borderRadius: THEME.size.radius.sm,
-                    border: "1px solid #ccc",
-                    backgroundColor: "#f0f0f0",
                     color: "black",
                   }}
                 >
@@ -253,14 +248,14 @@ export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
             >
               <Button
                 variant="primary"
-                style={{ width: "60px", height: "40px" }}
+                style={{ width: "60px", height: "50px", fontSize: "1.5rem" }}
                 onClick={() => moveSelection("up")}
               >
                 ↑
               </Button>
               <Button
                 variant="primary"
-                style={{ width: "60px", height: "40px" }}
+                style={{ width: "60px", height: "50px", fontSize: "1.5rem" }}
                 onClick={() => moveSelection("down")}
               >
                 ↓
@@ -301,13 +296,17 @@ export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
                     buttons: "1 2 3 4 5 6 7 8 9 0 {bksp} clear",
                   },
                 ]}
+                display={{
+                  "{bksp}": "Backspace",
+                  clear: "Clear",
+                }}
               />
 
               {/* Select option */}
               <div style={{ marginTop: "1rem" }}>
                 <label
                   style={{
-                    fontSize: THEME.font.size.base,
+                    fontSize: THEME.font.size.lg,
                     fontWeight: THEME.font.weight.bold,
                     color: "black",
                     textAlign: "left",
@@ -338,6 +337,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
               {/* Exit button */}
               <Button
                 onClick={handleExit}
+                variant="danger"
                 style={{
                   alignSelf: "flex-end",
                   marginTop: "100px",

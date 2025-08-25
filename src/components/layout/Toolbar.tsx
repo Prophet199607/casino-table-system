@@ -55,9 +55,9 @@ export const Toolbar = () => {
         </span>
         <span
           style={{
-            fontSize: THEME.font.size.xl,
-            fontWeight: "bold",
-            fontFamily: "monospace",
+            fontSize: THEME.font.size.display,
+            fontWeight: THEME.font.weight.bold,
+            fontFamily: "DS-DIGIT",
           }}
         >
           {time}
@@ -67,7 +67,7 @@ export const Toolbar = () => {
       <div
         style={{
           fontWeight: "bold",
-          fontSize: "1.2rem",
+          fontSize: "1.5rem",
         }}
       >
         Table No:
