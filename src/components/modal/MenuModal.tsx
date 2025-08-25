@@ -88,8 +88,6 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
             overflow: "hidden",
             borderRadius: 12,
             background: "linear-gradient(135deg, #4a5fc9 0%, #2e3f8f 100%)",
-            color: "white",
-            border: "1px solid #3a4ba9",
           }}
         >
           <div style={{ flex: 1, overflowY: "auto", padding: 20 }}>
@@ -110,19 +108,18 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
                   borderRadius: 6,
                   border: "1px solid rgba(255,255,255,0.3)",
                   background: "rgba(0,0,0,0.2)",
-                  color: "white",
                   fontWeight: 600,
                   padding: "0 12px",
                   fontSize: "0.95rem",
                   marginBottom: 15,
                 }}
               >
-                <option value="" disabled>
+                <option value="" disabled style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>
                   Select table...
                 </option>
-                <option value="T01">Casino Main</option>
-                <option value="T02">Casino VIP</option>
-                <option value="T03">Private Room</option>
+                <option style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>Casino Table 01</option>
+                <option style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>Casino Table 02</option>
+                <option style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>Casino Table 03 </option>
               </select>
 
               <div
