@@ -22,6 +22,7 @@ export const THEME = {
       lg: "1.125rem",
       xl: "1.25rem",
       display: "1.6rem",
+      heading: "2rem",
     },
     weight: { normal: 450, semibold: 600, bold: 750 },
   },
