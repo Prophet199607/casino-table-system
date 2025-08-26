@@ -47,6 +47,22 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
     "50": 50,
   };
 
+  // Example hardcoded previous values
+  const prevValues: Record<string, string> = {
+    "5 M": "10",
+    "2.5 M": "15",
+    "1 M": "10",
+    "500 K": "20",
+    "100 K": "25",
+    "50 K": "20",
+    "10 K": "10",
+    "5 K": "15",
+    "1 K": "20",
+    "500": "20",
+    "100": "10",
+    "50": "50",
+  };
+
   const [values, setValues] = useState<string[]>(
     Array(fieldLabels.length).fill("")
   );
@@ -54,8 +70,10 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleInputChange = (index: number, value: string) => {
+    const sanitized = value.replace(/\D/g, "");
+    const limited = sanitized.slice(0, 7);
     const newValues = [...values];
-    newValues[index] = value;
+    newValues[index] = limited;
     setValues(newValues);
   };
 
@@ -134,7 +152,7 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
       >
         <ModalCard
           width={THEME.size.frame.w}
-          maxWidth="700px"
+          maxWidth="750px"
           height="auto"
           padding={THEME.space.lg}
           onClick={(e) => e.stopPropagation()}
@@ -180,17 +198,21 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                   <input
                     id={`input-${index}`}
                     type="text"
-                    value={values[index]}
+                    value={
+                      values[index]
+                        ? Number(values[index]).toLocaleString()
+                        : ""
+                    }
                     ref={(el) => {
                       inputRefs.current[index] = el;
                     }}
                     onFocus={() => setSelectedIndex(index)}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       handleInputChange(
                         index,
-                        e.target.value.replace(/[^\d.]/g, "")
-                      )
-                    }
+                        e.target.value.replace(/,/g, "")
+                      );
+                    }}
                     style={{
                       flex: 1,
                       maxWidth: "200px",
@@ -201,10 +223,24 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                       color: "black",
                       backgroundColor:
                         selectedIndex === index ? "#d5c0fa" : "white",
-                      fontSize: "1.5rem",
+                      fontSize: THEME.font.size.heading,
                       fontWeight: THEME.font.weight.semibold,
                     }}
                   />
+
+                  {/* Previous value */}
+                  {prevValues[label] && (
+                    <span
+                      style={{
+                        color: THEME.color.brand.danger,
+                        marginLeft: "0.5rem",
+                        fontSize: THEME.font.size.display,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {Number(prevValues[label]).toLocaleString()}
+                    </span>
+                  )}
                 </div>
               ))}
 
@@ -277,7 +313,7 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                 style={{
                   color: "black",
                   textAlign: "end",
-                  fontSize: "2rem",
+                  fontSize: THEME.font.size.heading,
                   marginTop: "0",
                   marginBottom: "0",
                 }}
