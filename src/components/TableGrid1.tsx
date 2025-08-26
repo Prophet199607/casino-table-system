@@ -262,9 +262,9 @@ export const TableGrid: React.FC = () => {
                 
               >
                 <CasinoCard
-                  title="Menu"
+                  title="Setting"
                   solid={THEME.color.solid.cardJ}
-                  imageSrc="/assets/images/menu.png"
+                  imageSrc="/assets/images/settings1.png"
                   fontSize="1.5rem"
                   imgWidth="45px"
                   imgHeight="45px"

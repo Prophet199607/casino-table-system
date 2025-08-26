@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { THEME } from "../../constants/theme";
 import { ModalCard } from "../cards/ModalCard";
 
@@ -6,55 +6,111 @@ type MenuAction =
   | "TV Room Alert" 
   | "Dealer Result" 
   | "Table Result" 
-  | "Rolling Package"
-  | "Calculator" 
   | "Transfer & Refill Accept" 
-  | "Flush" 
   | "Chip Details"
-  | "Member Log Out" 
   | "Member Summary" 
-  | "Setup" 
-  | "Box Out"
-  | "Pack Shuffle" 
-  | "Non Cash" 
-  | "Rolling Duplicate Copy"
-  | "Banker Six Half" 
-  | "F & B" 
-  | "Chip Detect" 
-  | "Restart";
+  | "Reset";
 
 interface MenuProps {
   onAction?: (action: MenuAction) => void;
   onClose?: () => void;
 }
 
-export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
-  const [selectedTable, setSelectedTable] = useState("");
+interface ButtonConfig {
+  label: MenuAction;
+  imageSrc?: string;
+}
 
-  const NormalButton: React.FC<{ label: MenuAction }> = ({ label }) => (
+export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
+  const buttonConfigs: ButtonConfig[] = [
+    { 
+      label: "TV Room Alert", 
+      imageSrc: "/assets/images/alert1.png",
+    },
+    { 
+      label: "Dealer Result", 
+      imageSrc: "/assets/images/dealerresult.png",
+    },
+    { 
+      label: "Table Result", 
+      imageSrc: "/assets/images/table1.png",
+    },
+    { 
+      label: "Transfer & Refill Accept", 
+      imageSrc: "/assets/images/transfer1.png",
+    },
+    { 
+      label: "Chip Details", 
+      imageSrc: "/assets/images/chipdetails.png",
+    },
+    { 
+      label: "Member Summary", 
+      imageSrc: "/assets/images/member.png",
+    },
+  ];
+
+  const CustomButton: React.FC<ButtonConfig> = ({ 
+    label, 
+    imageSrc,
+  }) => (
     <button
       onClick={() => onAction?.(label)}
       style={{
-        width: "100%",
-        height: 60,
-        borderRadius: 8,
-        background: "#4a5fc9",
-        fontSize: "1.3rem",
+        width: "270px",
+        height: "150px",
+        borderRadius: "12px",
+        background: "linear-gradient(145deg, #2a40c8, #172c98)",
+        fontSize: "1.6rem",
         fontWeight: 600,
         cursor: "pointer",
-        transition: "transform .2s ease, background .2s ease",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+        padding: "15px",
+        position: "relative",
+        overflow: "hidden",
+        transition: "all 0.3s ease",
+        boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = "#5a70e0";
-        e.currentTarget.style.transform = "translateY(-2px)";
+        e.currentTarget.style.background = "linear-gradient(145deg, #3a50d8, #2a40c8)";
+        e.currentTarget.style.transform = "translateY(-5px)";
+        e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = "#4a5fc9";
+        e.currentTarget.style.background = "linear-gradient(145deg, #2a40c8, #172c98)";
         e.currentTarget.style.transform = "translateY(0)";
+        e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.15)";
       }}
     >
-      {label}
+      <img 
+        src={imageSrc} 
+        alt="" 
+        style={{ 
+          position: "absolute",
+            top: "12px",
+            right: "12px",
+            borderRadius: "8px",
+            display: "flex",
+            justifyContent: "center",
+            padding: "5px",
+            width: "70px", 
+            height: "70px",
+            alignItems: "right",
+            objectFit: "contain",
+            filter: "brightness(0) invert(1)",
+        }} 
+      />
+      <span style={{ 
+        textAlign: "center", 
+        width: "100%", 
+        marginTop: "auto",
+        paddingTop: "10px",
+        lineHeight: "1.2"
+      }}>
+        {label}
+      </span>
     </button>
   );
 
@@ -64,6 +120,7 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
       style={{
         position: "fixed",
         inset: 0,
+        backgroundColor: "rgba(0,0,0,0.7)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -83,111 +140,90 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
-            borderRadius: 12,
-            background: "linear-gradient(135deg, #4a5fc9 0%",
+            borderRadius: "20px",
+            background: "linear-gradient(to bottom, #f8faff, #eef2ff)",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
           }}
         >
-          <div style={{ flex: 1, overflowY: "auto", padding: 20 }}>
-              <select
-                value={selectedTable}
-                onChange={(e) => setSelectedTable(e.target.value)}
-                style={{
-                  width: "100%",
-                  height: 45,
-                  borderRadius: 6,
-                  background: "rgba(9, 54, 153, 0.2)",
-                  fontWeight: 600,
-                  padding: "0 12px",
-                  fontSize: "0.95rem",
-                  marginBottom: 15,
-                }}
-              >
-                <option value="" disabled 
-                  style={{ 
-                    backgroundColor: "#4a5fc9",
-                    fontSize: "1rem"
-                   }}
-                  >
-                  Select Table
-                </option>
-                <option style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>Casino Table 01</option>
-                <option style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>Casino Table 02</option>
-                <option style={{ backgroundColor: "#4a5fc9", color: "#fff" }}>Casino Table 03 </option>
-              </select>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: 12,
-                }}
-              >
-                <NormalButton label="TV Room Alert" />
-                <NormalButton label="Dealer Result" />
-                <NormalButton label="Table Result" />
-                <NormalButton label="Rolling Package" />
-                <NormalButton label="Calculator" />
-                <NormalButton label="Transfer & Refill Accept" />
-                <NormalButton label="Flush" />
-                <NormalButton label="Chip Details" />
-                <NormalButton label="Member Log Out" />
-                <NormalButton label="Member Summary" />
-                <NormalButton label="Setup" />
-                <NormalButton label="Box Out" />
-                <NormalButton label="Pack Shuffle" />
-                <NormalButton label="Non Cash" />
-                <NormalButton label="Rolling Duplicate Copy" />
-                <NormalButton label="Banker Six Half" />
-                <NormalButton label="F & B" />
-                <NormalButton label="Chip Detect" />
-              </div>
+          <div style={{ 
+            padding: "40px 30px 30px",
+            display: "flex",
+            justifyContent: "center"
+          }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "25px",
+              }}
+            >
+              {buttonConfigs.map((config, index) => (
+                <CustomButton key={index} {...config} />
+              ))}
+            </div>
           </div>
-
+          
           <div
             style={{
-              padding: "12px 20px",
-              background: "rgba(24, 21, 214, 0.2)",
+              padding: "25px",
+              background: "rgba(23, 44, 152, 0.05)",
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              justifyContent: "center",
+              gap: "25px",
+              borderTop: "1px solid rgba(23, 44, 152, 0.1)"
             }}
           >
             <button
-              onClick={() => onAction?.("Restart")}
+              onClick={() => onAction?.("Reset")}
               style={{
-                background: "linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%)",
+                background: "linear-gradient(145deg, #ff6b6b, #ee5a52)",
                 border: "none",
-                borderRadius: 6,
-                padding: "10px 20px",
+                borderRadius: "10px",
+                color: "white",
+                padding: "15px 35px",
                 fontWeight: 600,
                 cursor: "pointer",
-                fontSize: "1.3rem",
-                minWidth: 120,
-                boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
-                transition: "transform .2s ease, opacity .2s ease",
+                fontSize: "1.1rem",
+                minWidth: "150px",
+                boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
+                transition: "all 0.3s ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-2px)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.15)";
+              }}
             >
               Reset
             </button>
-
             <button
               onClick={onClose}
               style={{
-                background: "rgba(255,255,255,0.15)",
-                border: "1px solid rgba(255,255,255,0.35)",
-                borderRadius: 6,
-                padding: "10px 20px",
+                background: "linear-gradient(145deg, #2a40c8, #172c98)",
+                border: "none",
+                borderRadius: "10px",
+                color: "white",
+                padding: "15px 35px",
                 fontWeight: 600,
                 cursor: "pointer",
-                fontSize: "1.3rem",
-                minWidth: 120,
-                backdropFilter: "blur(3px)",
-                transition: "transform .2s ease, opacity .2s ease",
+                fontSize: "1.1rem",
+                minWidth: "150px",
+                boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
+                transition: "all 0.3s ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-2px)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "linear-gradient(145deg, #3a50d8, #2a40c8)";
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "linear-gradient(145deg, #2a40c8, #172c98)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.15)";
+              }}
             >
               Close
             </button>
