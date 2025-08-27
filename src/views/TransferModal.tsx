@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import { THEME } from "../../constants/theme";
-import { Button } from "../ui/Button";
-import { ModalCard } from "../cards/ModalCard";
+import { THEME } from "../constants/theme";
+import { Button } from "../components/ui/Button";
+import { ModalCard } from "../components/cards/ModalCard";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 

@@ -13,6 +13,6 @@ export { Button } from "./ui/Button";
 // Modal Components
 export { Modal } from "./modal/Modal";
 export { LoginModal } from "./modal/LoginModal";
-export { RefillModal } from "./modal/RefillModal";
-export { TransferModal } from "./modal/TransferModal";
-export {MenuModal} from "./modal/MenuModal";
+export { RefillModal } from "../views/RefillModal";
+export { TransferModal } from "../views/TransferModal";
+export { MenuModal } from "../views/MenuModal";

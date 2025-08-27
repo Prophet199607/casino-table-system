@@ -3,9 +3,9 @@ import { CasinoCard } from "./cards/CasinoCard1";
 import { THEME } from "../constants/theme";
 import { LayoutGrid, GridItem } from "./layout/LayoutGrid";
 import { LoginModal } from "./modal/LoginModal";
-import { RefillModal } from "./modal/RefillModal";
-import { TransferModal } from "./modal/TransferModal";
-import { MenuModal } from "./modal/MenuModal";
+import { RefillModal } from "../views/RefillModal";
+import { TransferModal } from "../views/TransferModal";
+import { MenuModal } from "../views/MenuModal";
 
 export const TableGrid: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -16,7 +16,6 @@ export const TableGrid: React.FC = () => {
     null
   );
   const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
-
 
   const [pendingAction, setPendingAction] = useState<string | null>(null);
 
@@ -236,10 +235,7 @@ export const TableGrid: React.FC = () => {
               <button
                 style={{ width: "100%" }}
                 onClick={() =>
-                  handleOpenModal(
-                    "Member",
-                    THEME.color.solid.cardH
-                  )
+                  handleOpenModal("Member", THEME.color.solid.cardH)
                 }
               >
                 <CasinoCard
@@ -259,7 +255,6 @@ export const TableGrid: React.FC = () => {
               <button
                 style={{ width: "100%" }}
                 onClick={() => setIsMenuModalOpen(true)}
-                
               >
                 <CasinoCard
                   title="Setting"

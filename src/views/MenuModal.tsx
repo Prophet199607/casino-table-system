@@ -1,14 +1,14 @@
 import React from "react";
-import { THEME } from "../../constants/theme";
-import { ModalCard } from "../cards/ModalCard";
+import { THEME } from "../constants/theme";
+import { ModalCard } from "../components/cards/ModalCard";
 
 type MenuAction =
-  | "TV Room Alert" 
-  | "Dealer Result" 
-  | "Table Result" 
-  | "Transfer & Refill Accept" 
+  | "TV Room Alert"
+  | "Dealer Result"
+  | "Table Result"
+  | "Transfer & Refill Accept"
   | "Chip Details"
-  | "Member Summary" 
+  | "Member Summary"
   | "Reset";
 
 interface MenuProps {
@@ -23,36 +23,33 @@ interface ButtonConfig {
 
 export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
   const buttonConfigs: ButtonConfig[] = [
-    { 
-      label: "TV Room Alert", 
+    {
+      label: "TV Room Alert",
       imageSrc: "/assets/images/alert1.png",
     },
-    { 
-      label: "Dealer Result", 
+    {
+      label: "Dealer Result",
       imageSrc: "/assets/images/dealerresult.png",
     },
-    { 
-      label: "Table Result", 
+    {
+      label: "Table Result",
       imageSrc: "/assets/images/table1.png",
     },
-    { 
-      label: "Transfer & Refill Accept", 
+    {
+      label: "Transfer & Refill Accept",
       imageSrc: "/assets/images/transfer1.png",
     },
-    { 
-      label: "Chip Details", 
+    {
+      label: "Chip Details",
       imageSrc: "/assets/images/chipdetails.png",
     },
-    { 
-      label: "Member Summary", 
+    {
+      label: "Member Summary",
       imageSrc: "/assets/images/member.png",
     },
   ];
 
-  const CustomButton: React.FC<ButtonConfig> = ({ 
-    label, 
-    imageSrc,
-  }) => (
+  const CustomButton: React.FC<ButtonConfig> = ({ label, imageSrc }) => (
     <button
       onClick={() => onAction?.(label)}
       style={{
@@ -74,41 +71,45 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
         justifyContent: "space-between",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = "linear-gradient(145deg, #3a50d8, #2a40c8)";
+        e.currentTarget.style.background =
+          "linear-gradient(145deg, #3a50d8, #2a40c8)";
         e.currentTarget.style.transform = "translateY(-5px)";
         e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = "linear-gradient(145deg, #2a40c8, #172c98)";
+        e.currentTarget.style.background =
+          "linear-gradient(145deg, #2a40c8, #172c98)";
         e.currentTarget.style.transform = "translateY(0)";
         e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.15)";
       }}
     >
-      <img 
-        src={imageSrc} 
-        alt="" 
-        style={{ 
+      <img
+        src={imageSrc}
+        alt=""
+        style={{
           position: "absolute",
-            top: "12px",
-            right: "12px",
-            borderRadius: "8px",
-            display: "flex",
-            justifyContent: "center",
-            padding: "5px",
-            width: "70px", 
-            height: "70px",
-            alignItems: "right",
-            objectFit: "contain",
-            filter: "brightness(0) invert(1)",
-        }} 
+          top: "12px",
+          right: "12px",
+          borderRadius: "8px",
+          display: "flex",
+          justifyContent: "center",
+          padding: "5px",
+          width: "70px",
+          height: "70px",
+          alignItems: "right",
+          objectFit: "contain",
+          filter: "brightness(0) invert(1)",
+        }}
       />
-      <span style={{ 
-        textAlign: "center", 
-        width: "100%", 
-        marginTop: "auto",
-        paddingTop: "10px",
-        lineHeight: "1.2"
-      }}>
+      <span
+        style={{
+          textAlign: "center",
+          width: "100%",
+          marginTop: "auto",
+          paddingTop: "10px",
+          lineHeight: "1.2",
+        }}
+      >
         {label}
       </span>
     </button>
@@ -145,11 +146,13 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
             boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
           }}
         >
-          <div style={{ 
-            padding: "40px 30px 30px",
-            display: "flex",
-            justifyContent: "center"
-          }}>
+          <div
+            style={{
+              padding: "40px 30px 30px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <div
               style={{
                 display: "grid",
@@ -162,7 +165,7 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
               ))}
             </div>
           </div>
-          
+
           <div
             style={{
               padding: "25px",
@@ -170,7 +173,7 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
               display: "flex",
               justifyContent: "center",
               gap: "25px",
-              borderTop: "1px solid rgba(23, 44, 152, 0.1)"
+              borderTop: "1px solid rgba(23, 44, 152, 0.1)",
             }}
           >
             <button
@@ -215,12 +218,14 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
                 transition: "all 0.3s ease",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "linear-gradient(145deg, #3a50d8, #2a40c8)";
+                e.currentTarget.style.background =
+                  "linear-gradient(145deg, #3a50d8, #2a40c8)";
                 e.currentTarget.style.transform = "translateY(-3px)";
                 e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = "linear-gradient(145deg, #2a40c8, #172c98)";
+                e.currentTarget.style.background =
+                  "linear-gradient(145deg, #2a40c8, #172c98)";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.15)";
               }}

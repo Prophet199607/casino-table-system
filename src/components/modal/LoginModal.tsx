@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import { THEME } from "../../constants/theme";
-import { RefillModal } from "./RefillModal";
+import { RefillModal } from "../../views/RefillModal";
 
 interface LoginModalProps {
   title: string;
