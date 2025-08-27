@@ -73,10 +73,6 @@ export const MemberSummary: React.FC<MemberSummaryModalProps> = ({
     }
   };
 
-  const handleExit = () => {
-    window.location.href = "/";
-  };
-
   const handleSelectMember = (member: Member) => {
     setMemberId(member.id);
     setMemberName(member.name);
@@ -337,7 +333,7 @@ export const MemberSummary: React.FC<MemberSummaryModalProps> = ({
               Confirm
             </Button>
             <Button
-              onClick={handleExit}
+              onClick={onClose}
               variant="danger"
               style={{
                 padding: "12px 30px",
