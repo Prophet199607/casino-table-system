@@ -16,3 +16,5 @@ export { LoginModal } from "./modal/LoginModal";
 export { RefillModal } from "../views/RefillModal";
 export { TransferModal } from "../views/TransferModal";
 export { MenuModal } from "../views/MenuModal";
+export { MemberSummary } from "../views/settings/member/MemberSummary";
+export { ViewMembers } from "../views/settings/member/ViewMemers";

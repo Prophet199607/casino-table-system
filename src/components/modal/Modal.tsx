@@ -5,14 +5,19 @@ import { ModalCard } from "../cards/ModalCard";
 
 interface ModalProps {
   isOpen: boolean;
-  onButtonClick?: () => void;
+  onConfirm?: () => void;
+  onCancel?: () => void;
   confirmText?: string;
   cancelText?: string;
+  title: string;
+  style?: React.CSSProperties;
 }
 
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
-  onButtonClick,
+  onConfirm,
+  onCancel,
+  title,
   confirmText = "Confirm",
   cancelText = "Cancel",
 }) => {
@@ -30,9 +35,9 @@ export const Modal: React.FC<ModalProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 1000,
+        zIndex: 2000,
       }}
-      onClick={onButtonClick}
+      onClick={onCancel}
     >
       <ModalCard
         width={THEME.size.frame.w}
@@ -41,6 +46,17 @@ export const Modal: React.FC<ModalProps> = ({
         padding={THEME.space.lg}
         onClick={(e) => e.stopPropagation()}
       >
+        <h2
+          style={{
+            textAlign: "center",
+            fontSize: THEME.font.size.display,
+            fontWeight: THEME.font.weight.bold,
+            marginBottom: THEME.space.md,
+            color: "black",
+          }}
+        >
+          {title}
+        </h2>
         <div
           style={{
             display: "flex",
@@ -53,18 +69,18 @@ export const Modal: React.FC<ModalProps> = ({
           <Button
             variant="primary"
             width="75%"
-            height="150px"
+            height="80px"
             style={{ fontSize: "2rem" }}
-            onClick={onButtonClick}
+            onClick={onConfirm}
           >
             {confirmText}
           </Button>
           <Button
-            variant="secondary"
+            variant="success"
             width="75%"
-            height="150px"
+            height="80px"
             style={{ fontSize: "2rem" }}
-            onClick={onButtonClick}
+            onClick={onCancel}
           >
             {cancelText}
           </Button>

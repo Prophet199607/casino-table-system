@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { THEME } from "../constants/theme";
 import { ModalCard } from "../components/cards/ModalCard";
+import { MemberSummary } from "./settings/member/MemberSummary";
 
 type MenuAction =
   | "TV Room Alert"
@@ -19,9 +20,12 @@ interface MenuProps {
 interface ButtonConfig {
   label: MenuAction;
   imageSrc?: string;
+  onClick?: () => void;
 }
 
 export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
+  const [showMemberSummary, setShowMemberSummary] = useState(false);
+
   const buttonConfigs: ButtonConfig[] = [
     {
       label: "TV Room Alert",
@@ -46,12 +50,19 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
     {
       label: "Member Summary",
       imageSrc: "/assets/images/member.png",
+      onClick: () => {
+        setShowMemberSummary(true);
+      },
     },
   ];
 
-  const CustomButton: React.FC<ButtonConfig> = ({ label, imageSrc }) => (
+  const CustomButton: React.FC<ButtonConfig> = ({
+    label,
+    imageSrc,
+    onClick,
+  }) => (
     <button
-      onClick={() => onAction?.(label)}
+      onClick={onClick || (() => onAction?.(label))}
       style={{
         width: "270px",
         height: "150px",
@@ -116,127 +127,136 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
   );
 
   return (
-    <div
-      onClick={onClose}
-      style={{
-        position: "fixed",
-        inset: 0,
-        backgroundColor: "rgba(0,0,0,0.7)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1000,
-        padding: 16,
-      }}
-    >
-      <ModalCard
-        width={THEME.size.frame.w}
-        maxWidth="900px"
-        height="auto"
-        padding={0}
-        onClick={(e) => e.stopPropagation()}
+    <>
+      <div
+        onClick={onClose}
+        style={{
+          position: "fixed",
+          inset: 0,
+          backgroundColor: "rgba(0,0,0,0.7)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 1000,
+          padding: 16,
+        }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden",
-            borderRadius: "20px",
-            background: "linear-gradient(to bottom, #f8faff, #eef2ff)",
-            boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-          }}
+        <ModalCard
+          width={THEME.size.frame.w}
+          maxWidth="900px"
+          height="auto"
+          padding={0}
+          onClick={(e) => e.stopPropagation()}
         >
           <div
             style={{
-              padding: "40px 30px 30px",
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
+              overflow: "hidden",
+              borderRadius: "20px",
+              background: "linear-gradient(to bottom, #f8faff, #eef2ff)",
+              boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
             }}
           >
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "25px",
+                padding: "40px 30px 30px",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
-              {buttonConfigs.map((config, index) => (
-                <CustomButton key={index} {...config} />
-              ))}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "25px",
+                }}
+              >
+                {buttonConfigs.map((config, index) => (
+                  <CustomButton key={index} {...config} />
+                ))}
+              </div>
+            </div>
+
+            <div
+              style={{
+                padding: "25px",
+                background: "rgba(23, 44, 152, 0.05)",
+                display: "flex",
+                justifyContent: "center",
+                gap: "25px",
+                borderTop: "1px solid rgba(23, 44, 152, 0.1)",
+              }}
+            >
+              <button
+                onClick={() => onAction?.("Reset")}
+                style={{
+                  background: "linear-gradient(145deg, #ff6b6b, #ee5a52)",
+                  border: "none",
+                  borderRadius: "10px",
+                  color: "white",
+                  padding: "15px 35px",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  fontSize: "1.1rem",
+                  minWidth: "150px",
+                  boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-3px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 20px rgba(0,0,0,0.2)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 12px rgba(0,0,0,0.15)";
+                }}
+              >
+                Reset
+              </button>
+              <button
+                onClick={onClose}
+                style={{
+                  background: "linear-gradient(145deg, #2a40c8, #172c98)",
+                  border: "none",
+                  borderRadius: "10px",
+                  color: "white",
+                  padding: "15px 35px",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  fontSize: "1.1rem",
+                  minWidth: "150px",
+                  boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background =
+                    "linear-gradient(145deg, #3a50d8, #2a40c8)";
+                  e.currentTarget.style.transform = "translateY(-3px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 20px rgba(0,0,0,0.2)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background =
+                    "linear-gradient(145deg, #2a40c8, #172c98)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 12px rgba(0,0,0,0.15)";
+                }}
+              >
+                Close
+              </button>
             </div>
           </div>
+        </ModalCard>
+      </div>
 
-          <div
-            style={{
-              padding: "25px",
-              background: "rgba(23, 44, 152, 0.05)",
-              display: "flex",
-              justifyContent: "center",
-              gap: "25px",
-              borderTop: "1px solid rgba(23, 44, 152, 0.1)",
-            }}
-          >
-            <button
-              onClick={() => onAction?.("Reset")}
-              style={{
-                background: "linear-gradient(145deg, #ff6b6b, #ee5a52)",
-                border: "none",
-                borderRadius: "10px",
-                color: "white",
-                padding: "15px 35px",
-                fontWeight: 600,
-                cursor: "pointer",
-                fontSize: "1.1rem",
-                minWidth: "150px",
-                boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
-                transition: "all 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.15)";
-              }}
-            >
-              Reset
-            </button>
-            <button
-              onClick={onClose}
-              style={{
-                background: "linear-gradient(145deg, #2a40c8, #172c98)",
-                border: "none",
-                borderRadius: "10px",
-                color: "white",
-                padding: "15px 35px",
-                fontWeight: 600,
-                cursor: "pointer",
-                fontSize: "1.1rem",
-                minWidth: "150px",
-                boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
-                transition: "all 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background =
-                  "linear-gradient(145deg, #3a50d8, #2a40c8)";
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background =
-                  "linear-gradient(145deg, #2a40c8, #172c98)";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.15)";
-              }}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </ModalCard>
-    </div>
+      {/* Member Summary Modal */}
+      {showMemberSummary && (
+        <MemberSummary onClose={() => setShowMemberSummary(false)} />
+      )}
+    </>
   );
 };
-
-export default MenuModal;
