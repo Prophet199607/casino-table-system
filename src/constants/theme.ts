@@ -39,12 +39,8 @@ export const THEME = {
     },
     brand: {
       purple: "#6C5CE7",
-      violet: "#8B5CF6",
-      fuchsia: "#D946EF",
-      cyan: "#22D3EE",
-      lime: "#A3E635",
-      gold: "#F6C453",
       danger: "#EF4444",
+      blue: "#2563EB",
     },
     gradient: {
       cardA: "linear-gradient(135deg, #FF8BD7 0%, #8B5CF6 45%, #313185 100%)",
