@@ -123,13 +123,13 @@ export const MemberSummary: React.FC<MemberSummaryModalProps> = ({
             <h2
               style={{
                 color: "black",
-                textAlign: "center",
+                textAlign: "left",
                 fontSize: THEME.font.size.heading,
                 marginTop: "0",
                 marginBottom: "0",
               }}
             >
-              MEMBER SUMMARY
+              SUMMARY
             </h2>
           </div>
 
