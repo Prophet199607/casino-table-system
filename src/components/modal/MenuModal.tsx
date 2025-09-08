@@ -154,7 +154,7 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
       >
         <ModalCard
           width={THEME.size.frame.w}
-          maxWidth="900px"
+          maxWidth="930px"
           height="auto"
           padding={0}
           onClick={(e) => e.stopPropagation()}
@@ -200,7 +200,7 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
               <button
                 onClick={() => onAction?.("Reset")}
                 style={{
-                  background: "linear-gradient(145deg, #ff6b6b, #ee5a52)",
+                  background: "#e74c3c",
                   border: "none",
                   borderRadius: "10px",
                   color: "white",
