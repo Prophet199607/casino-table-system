@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { THEME } from "../constants/theme";
 import { ModalCard } from "../components/cards/ModalCard";
 import { MemberSummary } from "./settings/member/MemberSummary";
+import ChipDetails from "./settings/member/ChipDetails";
+import TableResults  from "./settings/member/TableResults";
+import  TransferRefill  from "./settings/member/TransferRefill";
 
 type MenuAction =
   | "TV Room Alert"
@@ -25,6 +28,9 @@ interface ButtonConfig {
 
 export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
   const [showMemberSummary, setShowMemberSummary] = useState(false);
+  const [showChipDetails, setShowChipDetails] = useState(false);
+  const [showTableResults, setShowTableResults] = useState(false);
+  const [showTransferRefill, setShowTransferRefill] = useState(false);
 
   const buttonConfigs: ButtonConfig[] = [
     {
@@ -38,14 +44,23 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
     {
       label: "Table Result",
       imageSrc: "/assets/images/table1.png",
+      onClick: () => {
+        setShowTableResults(true);
+      }
     },
     {
       label: "Transfer & Refill Accept",
       imageSrc: "/assets/images/transfer1.png",
+      onClick: () => {
+        setShowTransferRefill(true);
+      }
     },
     {
       label: "Chip Details",
       imageSrc: "/assets/images/chipdetails.png",
+      onClick: () => {
+        setShowChipDetails(true);
+      }
     },
     {
       label: "Member Summary",
@@ -256,6 +271,15 @@ export const MenuModal: React.FC<MenuProps> = ({ onAction, onClose }) => {
       {/* Member Summary Modal */}
       {showMemberSummary && (
         <MemberSummary onClose={() => setShowMemberSummary(false)} />
+      )}
+      {showChipDetails && (
+        <ChipDetails onClose={() => setShowChipDetails(false)} />
+      )}
+      {showTableResults && (
+        <TableResults onClose={() => setShowTableResults(false)} />
+      )}
+      {showTransferRefill && (
+        <TransferRefill onClose={() => setShowTransferRefill(false)} />
       )}
     </>
   );

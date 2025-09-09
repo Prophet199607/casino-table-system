@@ -1,6 +1,6 @@
 import React from "react";
-import { THEME } from "../../constants/theme";
-import { ModalCard } from "../cards/ModalCard";
+import { THEME } from "../../../constants/theme";
+import { ModalCard } from "../../../components/cards/ModalCard";
 
 interface TableRow {
   type: string;
