@@ -1,29 +1,45 @@
-import { useEffect, useState } from "react";
-import { THEME } from "../../constants/theme";
+import { useEffect, useState } from 'react';
+import { THEME } from '../../constants/theme';
+import { invoke } from '@tauri-apps/api/core';
 
 export const Toolbar = () => {
+  const [tableNo, setTableNo] = useState<string>('0');
+
   const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+  const formattedDate = today.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   });
 
   const [time, setTime] = useState(
-    new Date().toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
+    new Date().toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
     })
   );
 
   useEffect(() => {
+    fetchTableNo();
+  }, []);
+
+  const fetchTableNo = async () => {
+    try {
+      const result = await invoke('get_table_no');
+      setTableNo((result as string | number).toString());
+    } catch (error) {
+      console.error('Error fetching table number:', error);
+    }
+  };
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setTime(
-        new Date().toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
+        new Date().toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
         })
       );
     }, 1000);
@@ -32,15 +48,15 @@ export const Toolbar = () => {
 
   return (
     <div
-      className="flex items-center justify-between px-4 py-3"
+      className='flex items-center justify-between px-4 py-3'
       style={{ borderBottom: `1px solid ${THEME.color.stroke}` }}
     >
       <div
-        className="flex items-center px-4 py-3 gap-4"
+        className='flex items-center px-4 py-3 gap-4'
         style={{ borderBottom: `1px solid ${THEME.color.stroke}` }}
       >
         <span
-          className="font-semibold"
+          className='font-semibold'
           style={{ fontSize: THEME.font.size.xl }}
         >
           Date:
@@ -48,7 +64,7 @@ export const Toolbar = () => {
         <span style={{ fontSize: THEME.font.size.lg }}>{formattedDate}</span>
 
         <span
-          className="font-semibold"
+          className='font-semibold'
           style={{ fontSize: THEME.font.size.xl }}
         >
           Time:
@@ -57,8 +73,8 @@ export const Toolbar = () => {
           style={{
             fontSize: THEME.font.size.display,
             fontWeight: THEME.font.weight.bold,
-            fontFamily: "New York",
-            minWidth: "180px",
+            fontFamily: 'New York',
+            minWidth: '180px'
           }}
         >
           {time}
@@ -67,19 +83,19 @@ export const Toolbar = () => {
 
       <div
         style={{
-          fontWeight: "bold",
-          fontSize: "1.5rem",
+          fontWeight: 'bold',
+          fontSize: '1.5rem'
         }}
       >
-        Table No:
+        Table No: {tableNo}
       </div>
 
-      <div className="flex justify-end px-3">
-        <button className="h-11 w-11 relative rounded-xl overflow-visible shadow-lg flex items-center focus:outline-none">
+      <div className='flex justify-end px-3'>
+        <button className='h-11 w-11 relative rounded-xl overflow-visible shadow-lg flex items-center focus:outline-none'>
           <img
-            src="assets/images/notification.png"
-            alt="Notification"
-            className="relative w-9 h-9"
+            src='assets/images/notification.png'
+            alt='Notification'
+            className='relative w-9 h-9'
           />
         </button>
       </div>
