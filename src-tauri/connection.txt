@@ -1,0 +1,4 @@
+1.POS\SQLEXPRESS
+2.casino_table_system
+3.sa
+4.itonimta
