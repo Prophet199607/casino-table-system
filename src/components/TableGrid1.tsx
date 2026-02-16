@@ -3,9 +3,9 @@ import { CasinoCard } from "./cards/CasinoCard1";
 import { THEME } from "../constants/theme";
 import { LayoutGrid, GridItem } from "./layout/LayoutGrid";
 import { LoginModal } from "./modal/LoginModal";
-import { RefillModal } from "./modal/RefillModal";
-import { TransferModal } from "./modal/TransferModal";
-import { MenuModal } from "./modal/MenuModal";
+import { RefillModal } from "../views/RefillModal";
+import { TransferModal } from "../views/TransferModal";
+import { MenuModal } from "../views/MenuModal";
 
 export const TableGrid: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -16,7 +16,6 @@ export const TableGrid: React.FC = () => {
     null
   );
   const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
-
 
   const [pendingAction, setPendingAction] = useState<string | null>(null);
 
@@ -157,19 +156,19 @@ export const TableGrid: React.FC = () => {
                 style={{ width: "100%" }}
                 onClick={() =>
                   handleOpenModal(
-                    "Chip Filling",
+                    "Filling",
                     "/assets/images/poker-chips.png",
                     THEME.color.solid.cardG
                   )
                 }
               >
                 <CasinoCard
-                  title="Chip Filling"
+                  title="Filling"
                   solid={THEME.color.solid.cardG}
                   imageSrc="/assets/images/poker-chips.png"
                   fontSize="2.1rem"
-                  imgWidth="60px"
-                  imgHeight="90px"
+                  imgWidth="70px"
+                  imgHeight="70px"
                   imgPosition="top-right"
                   fluid
                 />
@@ -180,19 +179,19 @@ export const TableGrid: React.FC = () => {
                 style={{ width: "100%" }}
                 onClick={() =>
                   handleOpenModal(
-                    "Chip Count",
+                    "Count",
                     "/assets/images/casino-chip.png",
                     THEME.color.solid.cardI
                   )
                 }
               >
                 <CasinoCard
-                  title="Chip Count"
+                  title="Count"
                   solid={THEME.color.solid.cardI}
                   imageSrc="/assets/images/casino-chip.png"
                   fontSize="2.1rem"
-                  imgWidth="50px"
-                  imgHeight="90px"
+                  imgWidth="60px"
+                  imgHeight="60px"
                   imgPosition="top-right"
                   fluid
                 />
@@ -236,10 +235,7 @@ export const TableGrid: React.FC = () => {
               <button
                 style={{ width: "100%" }}
                 onClick={() =>
-                  handleOpenModal(
-                    "Member",
-                    THEME.color.solid.cardH
-                  )
+                  handleOpenModal("Member", THEME.color.solid.cardH)
                 }
               >
                 <CasinoCard
@@ -259,12 +255,11 @@ export const TableGrid: React.FC = () => {
               <button
                 style={{ width: "100%" }}
                 onClick={() => setIsMenuModalOpen(true)}
-                
               >
                 <CasinoCard
-                  title="Menu"
+                  title="Setting"
                   solid={THEME.color.solid.cardJ}
-                  imageSrc="/assets/images/menu.png"
+                  imageSrc="/assets/images/settings1.png"
                   fontSize="1.5rem"
                   imgWidth="45px"
                   imgHeight="45px"
@@ -294,28 +289,28 @@ export const TableGrid: React.FC = () => {
               <div
                 style={{
                   marginTop: "20px",
-                  border: "2px solid white",
-                  borderRadius: "8px",
-                  padding: "12px",
+                  padding: "6px",
                   color: THEME.color.text.primary,
-                  background: THEME.color.solid.glass,
-                  fontSize: "1.3rem",
+                  fontSize: "1.2rem",
                 }}
               >
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
+                    gap: "50px",
                     marginBottom: "6px",
                   }}
                 >
                   <span>Dealer</span>
                   <span>XXXX</span>
                 </div>
+
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
+                    gap: "16px",
                     marginBottom: "6px",
                   }}
                 >
@@ -325,7 +320,8 @@ export const TableGrid: React.FC = () => {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
+                    gap: "15px",
                     marginBottom: "6px",
                   }}
                 >
@@ -335,7 +331,8 @@ export const TableGrid: React.FC = () => {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
+                    gap: "54px",
                     marginBottom: "6px",
                   }}
                 >

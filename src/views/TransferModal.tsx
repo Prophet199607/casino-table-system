@@ -1,16 +1,16 @@
 import React, { useState, useRef } from "react";
-import { THEME } from "../../constants/theme";
-import { Button } from "../ui/Button";
-import { ModalCard } from "../cards/ModalCard";
+import { THEME } from "../constants/theme";
+import { Button } from "../components/ui/Button";
+import { ModalCard } from "../components/cards/ModalCard";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 
-interface RefillModalProps {
+interface TransferModalProps {
   isOpen: boolean;
   onButtonClick: () => void;
 }
 
-export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
+export const TransferModal: React.FC<TransferModalProps> = ({ isOpen }) => {
   if (!isOpen) return null;
 
   const layouts = {
@@ -47,6 +47,22 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
     "50": 50,
   };
 
+  // Example hardcoded previous values
+  const prevValues: Record<string, string> = {
+    "5 M": "10",
+    "2.5 M": "15",
+    "1 M": "10",
+    "500 K": "20",
+    "100 K": "25",
+    "50 K": "20",
+    "10 K": "10",
+    "5 K": "15",
+    "1 K": "20",
+    "500": "20",
+    "100": "10",
+    "50": "50",
+  };
+
   const [values, setValues] = useState<string[]>(
     Array(fieldLabels.length).fill("")
   );
@@ -54,8 +70,10 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleInputChange = (index: number, value: string) => {
+    const sanitized = value.replace(/\D/g, "");
+    const limited = sanitized.slice(0, 7);
     const newValues = [...values];
-    newValues[index] = value;
+    newValues[index] = limited;
     setValues(newValues);
   };
 
@@ -113,7 +131,7 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
             font-size: 1.2rem !important;
         }
         .numericKeyboard {
-            font-size: 1.2rem !important;
+            font-size: 1.5rem !important;
         }
         `}
       </style>
@@ -134,7 +152,7 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
       >
         <ModalCard
           width={THEME.size.frame.w}
-          maxWidth="700px"
+          maxWidth="750px"
           height="auto"
           padding={THEME.space.lg}
           onClick={(e) => e.stopPropagation()}
@@ -152,7 +170,7 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "0.5rem",
+                gap: "0.3rem",
                 flex: 1,
               }}
             >
@@ -180,31 +198,49 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                   <input
                     id={`input-${index}`}
                     type="text"
-                    value={values[index]}
+                    value={
+                      values[index]
+                        ? Number(values[index]).toLocaleString()
+                        : ""
+                    }
                     ref={(el) => {
                       inputRefs.current[index] = el;
                     }}
                     onFocus={() => setSelectedIndex(index)}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       handleInputChange(
                         index,
-                        e.target.value.replace(/[^\d.]/g, "")
-                      )
-                    }
+                        e.target.value.replace(/,/g, "")
+                      );
+                    }}
                     style={{
                       flex: 1,
                       maxWidth: "200px",
-                      height: "40px",
+                      height: "45px",
                       padding: THEME.space.sm,
                       borderRadius: THEME.size.radius.sm,
                       border: "1px solid #ccc",
                       color: "black",
                       backgroundColor:
                         selectedIndex === index ? "#d5c0fa" : "white",
-                      fontSize: "1rem",
+                      fontSize: THEME.font.size.heading,
                       fontWeight: THEME.font.weight.semibold,
                     }}
                   />
+
+                  {/* Previous value */}
+                  {prevValues[label] && (
+                    <span
+                      style={{
+                        color: THEME.color.brand.danger,
+                        marginLeft: "0.5rem",
+                        fontSize: THEME.font.size.display,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {prevValues[label]}
+                    </span>
+                  )}
                 </div>
               ))}
 
@@ -213,7 +249,7 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  fontSize: THEME.font.size.lg,
+                  fontSize: THEME.font.size.display,
                   fontWeight: THEME.font.weight.bold,
                   gap: THEME.space.md,
                   marginTop: THEME.space.md,
@@ -227,11 +263,6 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                 <div
                   style={{
                     flex: 1,
-                    maxWidth: "200px",
-                    padding: THEME.space.sm,
-                    borderRadius: THEME.size.radius.sm,
-                    border: "1px solid #ccc",
-                    backgroundColor: "#f0f0f0",
                     color: "black",
                   }}
                 >
@@ -253,14 +284,14 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
             >
               <Button
                 variant="primary"
-                style={{ width: "60px", height: "40px" }}
+                style={{ width: "60px", height: "50px", fontSize: "1.5rem" }}
                 onClick={() => moveSelection("up")}
               >
                 ↑
               </Button>
               <Button
                 variant="primary"
-                style={{ width: "60px", height: "40px" }}
+                style={{ width: "60px", height: "50px", fontSize: "1.5rem" }}
                 onClick={() => moveSelection("down")}
               >
                 ↓
@@ -282,12 +313,12 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                 style={{
                   color: "black",
                   textAlign: "end",
-                  fontSize: "2rem",
+                  fontSize: THEME.font.size.heading,
                   marginTop: "0",
                   marginBottom: "0",
                 }}
               >
-                REFILL
+                CHIP TRANSFER
               </h2>
 
               {/* Keyboard */}
@@ -301,13 +332,17 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
                     buttons: "1 2 3 4 5 6 7 8 9 0 {bksp} clear",
                   },
                 ]}
+                display={{
+                  "{bksp}": "Backspace",
+                  clear: "Clear",
+                }}
               />
 
               {/* Select option */}
               <div style={{ marginTop: "1rem" }}>
                 <label
                   style={{
-                    fontSize: THEME.font.size.base,
+                    fontSize: THEME.font.size.lg,
                     fontWeight: THEME.font.weight.bold,
                     color: "black",
                     textAlign: "left",
@@ -338,6 +373,7 @@ export const RefillModal: React.FC<RefillModalProps> = ({ isOpen }) => {
               {/* Exit button */}
               <Button
                 onClick={handleExit}
+                variant="danger"
                 style={{
                   alignSelf: "flex-end",
                   marginTop: "100px",

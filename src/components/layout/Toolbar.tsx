@@ -41,23 +41,24 @@ export const Toolbar = () => {
       >
         <span
           className="font-semibold"
-          style={{ fontSize: THEME.font.size.base }}
+          style={{ fontSize: THEME.font.size.xl }}
         >
           Date:
         </span>
-        <span style={{ fontSize: THEME.font.size.sm }}>{formattedDate}</span>
+        <span style={{ fontSize: THEME.font.size.lg }}>{formattedDate}</span>
 
         <span
           className="font-semibold"
-          style={{ fontSize: THEME.font.size.base }}
+          style={{ fontSize: THEME.font.size.xl }}
         >
           Time:
         </span>
         <span
           style={{
-            fontSize: THEME.font.size.xl,
-            fontWeight: "bold",
-            fontFamily: "monospace",
+            fontSize: THEME.font.size.display,
+            fontWeight: THEME.font.weight.bold,
+            fontFamily: "New York",
+            minWidth: "180px",
           }}
         >
           {time}
@@ -67,7 +68,7 @@ export const Toolbar = () => {
       <div
         style={{
           fontWeight: "bold",
-          fontSize: "1.2rem",
+          fontSize: "1.5rem",
         }}
       >
         Table No:
